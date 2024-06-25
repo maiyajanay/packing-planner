@@ -1,0 +1,5 @@
+{
+    "mongodb": {
+      "uri": "mongodb+srv://admin:packingplanner2024@cluster0.ubirz.mongodb.net/packingplanner_db?retryWrites=true&w=majority"
+    }
+   }
