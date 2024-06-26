@@ -10,8 +10,7 @@ const errorResponse = (error: any, res: any) => {
   res.status(500).json({ message: "Internal Server Error" });
 };
 
-// get all Shoutouts
-packingPlannerRouter.get("/shoutouts", async (req, res) => {
+packingPlannerRouter.get("/trips", async (req, res) => {
   try {
     const client = await getClient();
     const cursor = client.db().collection<Trip>("trips").find();
@@ -22,17 +21,13 @@ packingPlannerRouter.get("/shoutouts", async (req, res) => {
   }
 });
 
-// get Shoutout by ID
-packingPlannerRouter.get("/shoutouts/:id", async (req, res) => {
+packingPlannerRouter.get("/trips/:id", async (req, res) => {
   try {
     const _id: ObjectId = new ObjectId(req.params.id);
     const client = await getClient();
-    const shoutout = await client
-      .db()
-      .collection<Trip>("trips")
-      .findOne({ _id });
-    if (shoutout) {
-      res.status(200).json(shoutout);
+    const trip = await client.db().collection<Trip>("trips").findOne({ _id });
+    if (trip) {
+      res.status(200).json(trip);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
@@ -41,20 +36,18 @@ packingPlannerRouter.get("/shoutouts/:id", async (req, res) => {
   }
 });
 
-// create new Shoutout
-packingPlannerRouter.post("/shoutouts", async (req, res) => {
+packingPlannerRouter.post("/trips", async (req, res) => {
   try {
-    const shoutout: Trip = req.body;
+    const trip: Trip = req.body;
     const client = await getClient();
-    await client.db().collection<Trip>("trips").insertOne(shoutout);
-    res.status(201).json(shoutout);
+    await client.db().collection<Trip>("trips").insertOne(trip);
+    res.status(201).json(trip);
   } catch (err) {
     ("Cannot Address");
   }
 });
 
-// delete Shoutout by ID
-packingPlannerRouter.delete("/shoutouts/:id", async (req, res) => {
+packingPlannerRouter.delete("/trips/:id", async (req, res) => {
   try {
     const _id: ObjectId = new ObjectId(req.params.id);
     const client = await getClient();
@@ -72,20 +65,19 @@ packingPlannerRouter.delete("/shoutouts/:id", async (req, res) => {
   }
 });
 
-// replace / update Shoutout by ID
-packingPlannerRouter.put("/shoutouts/:id", async (req, res) => {
+packingPlannerRouter.put("/trips/:id", async (req, res) => {
   try {
     const _id: ObjectId = new ObjectId(req.params.id);
-    const updatedShoutout: Trip = req.body;
-    delete updatedShoutout._id; // remove _id from body so we only have one.
+    const updatedTrip: Trip = req.body;
+    delete updatedTrip._id;
     const client = await getClient();
     const result = await client
       .db()
       .collection<Trip>("trips")
-      .replaceOne({ _id }, updatedShoutout);
+      .replaceOne({ _id }, updatedTrip);
     if (result.modifiedCount) {
-      updatedShoutout._id = _id;
-      res.status(200).json(updatedShoutout);
+      updatedTrip._id = _id;
+      res.status(200).json(updatedTrip);
     } else {
       res.status(404).json({ message: "Not Found" });
     }
