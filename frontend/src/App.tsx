@@ -1,13 +1,22 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import { Home } from "./Home";
-
+import { PackingForm } from "./PackingForm";
+import TripContext from "./tripContext/TripContext";
 function App() {
+  const { trips, handleEdit } = useContext(TripContext);
   return (
-    <>
-      <Home />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/packing/:id"
+          element={<PackingForm trips={trips} onEdit={handleEdit} />}
+        />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

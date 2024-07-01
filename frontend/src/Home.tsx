@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Trip from "./models/trip";
 import { addTrip, getTrips } from "./services/TripDbApi";
+import { PackingForm } from "./PackingForm";
+import { Link } from "react-router-dom";
+import TripContext from "./tripContext/TripContext";
 
 export function Home() {
-  const [trips, setTrips] = useState<Trip[]>([]);
-  const fetchAndSetTrips = async () => {
-    const trips = await getTrips();
-    setTrips(trips);
-  };
-
+  const { trips, fetchAndSetTrips } = useContext(TripContext);
   useEffect(() => {
     fetchAndSetTrips();
   }, []);
-  // const handleAdd = async (trip: Trip) => {
-  //   await addTrip(trip);
-  //   fetchAndSetTrips();
-  // };
+
   return (
     <>
       <ul>
@@ -24,6 +19,7 @@ export function Home() {
             ID: {trip._id?.toString()}
             <div> Name:{trip.name}</div>
             <div> complete: {trip.complete ? "Yes" : "No"}</div>
+            <Link to={`/details/${trip._id}`}> Start Packing </Link>
           </li>
         ))}
       </ul>
