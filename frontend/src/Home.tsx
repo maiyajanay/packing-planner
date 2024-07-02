@@ -50,16 +50,7 @@ export function Home() {
         <SearchForm onSearch={handleSearch} />
         <TripList trips={trips} weather={weather} />
       </div>
-      <ul>
-        {trips.map((trip) => (
-          <li key={trip._id?.toString()}>
-            ID: {trip._id?.toString()}
-            <div> Name:{trip.name}</div>
-            <div> complete: {trip.complete ? "Yes" : "No"}</div>
-            <Link to={`/details/${trip._id}`}> Start Packing </Link>
-          </li>
-        ))}
-      </ul>
+
     </>
   );
 }
