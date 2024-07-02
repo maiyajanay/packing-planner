@@ -1,21 +1,27 @@
+import { Link } from "react-router-dom";
 import Trip from "./models/trip";
 import { Weather } from "./models/weather";
-import { TripCard } from "./TripCard";
 
-interface TripListProps {
-  trips: Trip[];
-  weather: Weather | null;
+interface TripCardProps {
+    trip: Trip;
+    weather: Weather | null;
 }
 
-export function TripList({ trips, weather }: TripListProps) {
+export function TripCard({ trip, weather }: TripCardProps) {
     return (
         <div>
-            <h2>Your Upcoming Trips</h2>
-            <div>
-                {trips.map((trip) => (
-                <TripCard key={trip._id?.toString()} trip={trip} weather={weather} />
-                ))}
-            </div>
+        <p>{trip.name}</p>
+        <p>{trip.to}</p>
+        {weather ? (
+            <>
+            <p>Min: {weather.tempMin}</p>
+            <p>Max: {weather.tempMax}</p>
+            </>
+        ) : (
+            <p>Loading weather...</p>
+        )}
+        <Link to={`trips/${trip._id}`}>Start Packing</Link>
+        <button>End Trip</button>
         </div>
     );
 }
