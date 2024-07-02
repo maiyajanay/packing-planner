@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Trip from "./models/trip";
 import { Weather } from "./models/weather";
-import { addTrip, getTrips } from "./services/TripDbApi";
+
 import { PackingForm } from "./PackingForm";
 import { Link } from "react-router-dom";
 import TripContext from "./tripContext/TripContext";
@@ -9,7 +9,7 @@ import { fetchOneDayForecastByLocation } from "./services/WeatherApi";
 import { SearchForm } from "./SearchForm";
 import { TripList } from "./TripsList";
 export function Home() {
-  const { trips, fetchAndSetTrips } = useContext(TripContext);
+  const { trips, fetchAndSetTrips, handleAdd } = useContext(TripContext);
   // const [trips, setTrips] = useState<Trip[]>([]);
   const [weather, setWeather] = useState<Weather | null>(null);
 
@@ -40,8 +40,8 @@ export function Home() {
       weather: weather,
       complete: false,
     };
-    await addTrip(newTrip);
-    fetchAndSetTrips();
+    await handleAdd (newTrip);
+ 
   };
 
   return (

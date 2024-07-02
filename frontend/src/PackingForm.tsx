@@ -14,7 +14,6 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
   const trip: Trip | undefined =
     trips.find((foundtrip) => foundtrip._id === _id) || undefined;
 
-  const [dates, setDates] = useState("");
   const [shorts, setShorts] = useState<number>(0);
   const [pants, setPants] = useState<number>(0);
   const [shirts, setShirts] = useState<number>(0);
@@ -28,7 +27,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
     onEdit({
       name: trip.name,
       to: trip.to,
-      dates: trip.dates?.toString() || dates,
+      duration: trip.duration,
       shorts: trip.shorts || shorts,
       pants: trip.pants || pants,
       shirts: trip.shirts || shirts,
@@ -36,12 +35,11 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
       underwear: trip.underwear || underwear,
       sweatshirt: trip.sweatshirt || sweatshirt,
       jacket: trip.jacket || jacket,
-
+      weather: trip.weather,
       complete: false,
     });
     navigate("/");
 
-    setDates("");
     setShorts(0);
     setPants(0);
     setShirts(0);
@@ -65,15 +63,11 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             To:
             <input type="text" value={trip.to} readOnly />
           </label>
-
           <label>
-            Dates:
-            <input
-              type="text"
-              value={trip.dates || dates}
-              onChange={(e) => setDates(e.target.value)}
-            />
+            Duration:
+            <input type="number" value={trip.duration} readOnly />
           </label>
+
           <label>
             Shorts:
             <input
@@ -131,6 +125,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             />
           </label>
           <button type="submit">Save Trip</button>
+          <button onClick={() => navigate("/")}>Cancel</button>
         </form>
       </>
     );

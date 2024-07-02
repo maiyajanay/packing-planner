@@ -5,7 +5,6 @@ export default interface Trip {
   _id?: ObjectId;
   name: string;
   to: string;
-  dates?: string;
   shorts?: number;
   pants?: number;
   shirts?: number;
@@ -15,5 +14,5 @@ export default interface Trip {
   jacket?: number;
   complete: boolean;
   weather: Weather;
-  duration: number;
+  duration?: number;
 }
