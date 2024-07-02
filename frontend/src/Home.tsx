@@ -32,7 +32,11 @@ export function Home() {
     }
   };
 
-  const createAndAddTrip = async (destination: string, days: number, weather: Weather) => {
+  const createAndAddTrip = async (
+    destination: string,
+    days: number,
+    weather: Weather
+  ) => {
     const newTrip: Trip = {
       name: `Trip to ${destination}`,
       to: destination,
@@ -40,8 +44,7 @@ export function Home() {
       weather: weather,
       complete: false,
     };
-    await handleAdd (newTrip);
- 
+    await handleAdd(newTrip);
   };
 
   return (
@@ -50,7 +53,6 @@ export function Home() {
         <SearchForm onSearch={handleSearch} />
         <TripList trips={trips} weather={weather} />
       </div>
-
     </>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Trip from "./models/trip";
 import { useNavigate, useParams } from "react-router-dom";
-
+import "./PackingForm.css";
 interface PackingFormProps {
   trips: Trip[];
   // tripDate: string;
@@ -14,13 +14,13 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
   const trip: Trip | undefined =
     trips.find((foundtrip) => foundtrip._id === _id) || undefined;
 
-  const [shorts, setShorts] = useState<number>(0);
-  const [pants, setPants] = useState<number>(0);
-  const [shirts, setShirts] = useState<number>(0);
-  const [socks, setSocks] = useState<number>(0);
-  const [underwear, setUnderwear] = useState<number>(0);
-  const [sweatshirt, setSweatshirt] = useState<number>(0);
-  const [jacket, setJacket] = useState<number>(0);
+  const [shorts, setShorts] = useState<number>(trip.shorts || 0);
+  const [pants, setPants] = useState<number>(trip.pants || 0);
+  const [shirts, setShirts] = useState<number>(trip.shirts || 0);
+  const [socks, setSocks] = useState<number>(trip.socks || 0);
+  const [underwear, setUnderwear] = useState<number>(trip.underwear || 0);
+  const [sweatshirt, setSweatshirt] = useState<number>(trip.sweatshirt || 0);
+  const [jacket, setJacket] = useState<number>(trip.jacket || 0);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -28,32 +28,40 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
       name: trip.name,
       to: trip.to,
       duration: trip.duration,
-      shorts: trip.shorts || shorts,
-      pants: trip.pants || pants,
-      shirts: trip.shirts || shirts,
-      socks: trip.socks || socks,
-      underwear: trip.underwear || underwear,
-      sweatshirt: trip.sweatshirt || sweatshirt,
-      jacket: trip.jacket || jacket,
+      shorts: shorts,
+      pants: pants,
+      shirts: shirts,
+      socks: socks,
+      underwear: underwear,
+      sweatshirt: sweatshirt,
+      jacket: jacket,
       weather: trip.weather,
       complete: false,
     });
     navigate("/");
 
-    setShorts(0);
-    setPants(0);
-    setShirts(0);
-    setSocks(0);
-    setUnderwear(0);
-    setSweatshirt(0);
-    setJacket(0);
+    // setShorts(0);
+    // setPants(0);
+    // setShirts(0);
+    // setSocks(0);
+    // setUnderwear(0);
+    // setSweatshirt(0);
+    // setJacket(0);
   }
-  if (trip === undefined) {
+  if (trip?._id === undefined) {
     return <p> no trip found</p>;
+
+    // setShorts(trip.shorts || 0);
+    // setPants(trip.pants || 0);
+    // setShirts(trip.shirts || 0);
+    // setSocks(trip.socks || 0);
+    // setUnderwear(trip.underwear || 0);
+    // setSweatshirt(trip.sweatshirt || 0);
+    // setJacket(trip.jacket || 0);
   } else {
     return (
       <>
-        <form onSubmit={handleSubmit}>
+        <form className="packingForm" onSubmit={handleSubmit}>
           <h1> Create Your Packing List</h1>
           <label>
             Name:
@@ -72,7 +80,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Shorts:
             <input
               type="number"
-              value={trip.shorts || shorts}
+              value={shorts}
               onChange={(e) => setShorts(parseInt(e.target.value))}
             />
           </label>
@@ -80,7 +88,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Pants:
             <input
               type="number"
-              value={trip.pants || pants}
+              value={pants || 0}
               onChange={(e) => setPants(parseInt(e.target.value))}
             />
           </label>
@@ -88,7 +96,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Shirts:
             <input
               type="number"
-              value={trip.shirts || shirts}
+              value={shirts}
               onChange={(e) => setShirts(parseInt(e.target.value))}
             />
           </label>
@@ -96,7 +104,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Socks:
             <input
               type="number"
-              value={trip.socks || socks}
+              value={socks}
               onChange={(e) => setSocks(parseInt(e.target.value))}
             />
           </label>
@@ -104,7 +112,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Underwear:
             <input
               type="number"
-              value={trip.underwear || underwear}
+              value={underwear}
               onChange={(e) => setUnderwear(parseInt(e.target.value))}
             />
           </label>
@@ -112,7 +120,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Sweatshirt:
             <input
               type="number"
-              value={trip.sweatshirt || sweatshirt}
+              value={sweatshirt}
               onChange={(e) => setSweatshirt(parseInt(e.target.value))}
             />
           </label>
@@ -120,7 +128,7 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
             Jacket:
             <input
               type="number"
-              value={trip.jacket || jacket}
+              value={jacket}
               onChange={(e) => setJacket(parseInt(e.target.value))}
             />
           </label>
