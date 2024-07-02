@@ -1,4 +1,5 @@
 import { ObjectId } from "mongodb";
+import { Weather } from "./weather";
 
 export default interface Trip {
   _id?: ObjectId;
@@ -13,4 +14,6 @@ export default interface Trip {
   sweatshirt: number;
   jacket: number;
   complete: boolean;
+  weather: Weather;
+  duration: number;
 }

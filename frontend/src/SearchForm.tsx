@@ -1,19 +1,19 @@
 import { useState } from "react";
 
 interface SearchFormProps {
-  onSearch: (term: string) => void;
+  onSearch: (term: string, days: number) => void;
 }
 
 export function SearchForm({onSearch}: SearchFormProps) {
-    const [term, setTerm] = useState<string>(''); 
-    const [days, setDays] = useState(''); 
+  const [term, setTerm] = useState<string>(''); 
+  const [days, setDays] = useState<string>(''); 
   
-    function handleSubmit(e: React.FormEvent) {
-      e.preventDefault();
-      onSearch(term);
-      setTerm('');
-      setDays('')
-    }
+  function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    onSearch(term, parseInt(days));
+    setTerm('');
+    setDays('');
+  }
 
   return(
     <form onSubmit={handleSubmit}>
