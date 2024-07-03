@@ -23,8 +23,8 @@ export function TripContextProvider({ children }: Props) {
     fetchAndSetTrips();
   };
 
-  const handleEdit = async (trip: Trip) => {
-    await editTrip(trip);
+  const handleEdit = async (trip: Trip, id:string ) => {
+    await editTrip(trip, id);
     fetchAndSetTrips();
   };
 

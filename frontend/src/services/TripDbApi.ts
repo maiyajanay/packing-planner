@@ -10,8 +10,8 @@ export const addTrip = async (trip: Trip): Promise<Trip> => {
   return (await axios.post(`${baseUrl}/trips`, trip)).data;
 };
 
-export const editTrip = async (trip: Trip): Promise<Trip> => {
-  return (await axios.put(`${baseUrl}/trips/${trip._id}`, trip)).data;
+export const editTrip = async (trip: Trip, id: string): Promise<Trip> => {
+  return (await axios.put(`${baseUrl}/trips/${encodeURIComponent(id)}`, trip)).data;
 }
 
 export const deleteTrip = async (trip: Trip): Promise<void> => {
