@@ -1,20 +1,47 @@
 import axios from "axios";
 import { Weather } from "../models/weather";
 
-const API_KEY: string = import.meta.env.VITE_WEATHER_API_KEY || "";
+const API_KEY: string = import.meta.env.VITE_ACCUWEATHER_API_KEY || "";
+const BASE_URL = "http://dataservice.accuweather.com";
 
-const BASE_URL = "http://dataservice.accuweather.com/forecasts/v1/daily";
-
-export function fetchOneDayForecastByLocation(query: string): Promise<Weather[]> {
-    const url = `${BASE_URL}/1day/${query}?apikey=${API_KEY}`
-    return axios
-        .get<Weather[]>(url)
-        .then(response => response.data);
+interface AutocompleteResult {
+    Key: string;
+    LocalizedName: string;
 }
 
-export function fetchFiveDayForecastByLocation(query: string): Promise<Weather[]> {
-    const url = `${BASE_URL}/5day/${query}?apikey=${API_KEY}`
+interface ForecastResult {
+    DailyForecasts: Weather[];
+}
+
+export function getAutocompleteSuggestions(query: string): Promise<AutocompleteResult[]> {
+    const url = `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${query}`;
     return axios
-        .get<Weather[]>(url)
-        .then(response => response.data);
+        .get<AutocompleteResult[]>(url)
+        .then(response => response.data)
+        .catch(error => {
+            console.error("Error fetching autocomplete suggestions:", error);
+            throw error;
+        });
+}
+
+export function fetchOneDayForecastByLocation(locationKey: string): Promise<Weather> {
+    const url = `${BASE_URL}/forecasts/v1/daily/1day/${locationKey}?apikey=${API_KEY}`;
+    return axios
+        .get<ForecastResult>(url)
+        .then(response => response.data.DailyForecasts[0])
+        .catch(error => {
+            console.error("Error fetching one-day forecast:", error);
+            throw error;
+        });
+}
+
+export function fetchFiveDayForecastByLocation(locationKey: string): Promise<Weather[]> {
+    const url = `${BASE_URL}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`;
+    return axios
+        .get<ForecastResult>(url)
+        .then(response => response.data.DailyForecasts)
+        .catch(error => {
+            console.error("Error fetching five-day forecast:", error);
+            throw error;
+        });
 }

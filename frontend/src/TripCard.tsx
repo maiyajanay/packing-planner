@@ -8,23 +8,23 @@ interface TripCardProps {
 }
 
 export function TripCard({ trip, weather }: TripCardProps) {
-  const navigate = useNavigate();
-  return (
+    const navigate = useNavigate();
+    return (
     <div>
-      <p>{trip.name}</p>
-      <p>{trip.to}</p>
-      {weather ? (
+        <p>{trip.name}</p>
+        <p>{trip.to}</p>
+        {weather ? (
         <>
-          <p>Min: {weather.tempMin}</p>
-          <p>Max: {weather.tempMax}</p>
+            <p>Min: {weather.tempMin}</p>
+            <p>Max: {weather.tempMax}</p>
         </>
-      ) : (
+        ) : (
         <p>Loading weather...</p>
-      )}
-      <button onClick={() => navigate(`packing/${trip._id}`)}>
+        )}
+        <button onClick={() => navigate(`packing/${trip._id}`)}>
         Start Packing{" "}
-      </button>
-      <button>End Trip</button>
+        </button>
+        <button>End Trip</button>
     </div>
-  );
+    );
 }
