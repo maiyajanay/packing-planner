@@ -4,6 +4,8 @@ import "./App.css";
 import { Home } from "./Home";
 import { PackingForm } from "./PackingForm";
 import TripContext from "./tripContext/TripContext";
+import "./SearchForm.css";
+
 function App() {
   const { trips, handleEdit } = useContext(TripContext);
   return (

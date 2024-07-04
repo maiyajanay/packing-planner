@@ -1,5 +1,6 @@
 {
   "mongodb": {
     "uri": "mongodb+srv://admin:packingplanner2024@cluster0.vsyg1gr.mongodb.net/packingplanner_db?retryWrites=true&w=majority"
-  }
+  },
+  "accuweatherapitoken": "KGmzgbi4nyhTD0hwphqN6YSWr5AWCJV8"
 }

@@ -15,8 +15,8 @@ export function TripCard({ trip, weather }: TripCardProps) {
         <p>{trip.to}</p>
         {weather ? (
         <>
-            <p>Min: {weather.tempMin}</p>
-            <p>Max: {weather.tempMax}</p>
+            <p>Min: {weather.tempMin}°{weather.temperatureUnit}</p>
+            <p>Max: {weather.tempMax}°{weather.temperatureUnit}</p>
         </>
         ) : (
         <p>Loading weather...</p>
