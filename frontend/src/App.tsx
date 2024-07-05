@@ -4,6 +4,8 @@ import "./App.css";
 import { Home } from "./Home";
 import { PackingForm } from "./PackingForm";
 import TripContext from "./tripContext/TripContext";
+import { ViewPacking } from "./ViewPacking";
+import { PreviousTripLog } from "./PreviousTripLog";
 function App() {
   const { trips, handleEdit } = useContext(TripContext);
   return (
@@ -12,9 +14,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route
           path="/packing/:id"
-          element={<PackingForm trips={trips} onEdit={handleEdit} />}
+          element={<PackingForm onEdit={handleEdit} />}
         />
+        <Route path = "/viewpacklist/:id" element={<ViewPacking />} />
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/previoustrips" element = {<PreviousTripLog/>}/>
       </Routes>
     </BrowserRouter>
   );

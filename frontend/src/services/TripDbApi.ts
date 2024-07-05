@@ -11,9 +11,10 @@ export const addTrip = async (trip: Trip): Promise<Trip> => {
 };
 
 export const editTrip = async (trip: Trip, id: string): Promise<Trip> => {
-  return (await axios.put(`${baseUrl}/trips/${encodeURIComponent(id)}`, trip)).data;
-}
+  return (await axios.put(`${baseUrl}/trips/${encodeURIComponent(id)}`, trip))
+    .data;
+};
 
-export const deleteTrip = async (trip: Trip): Promise<void> => {
-  await axios.delete(`${baseUrl}/trips/${trip._id}`);
-}
+export const deleteTrip = async (id: string): Promise<void> => {
+  await axios.delete(`${baseUrl}/trips/${encodeURIComponent(id)}`);
+};

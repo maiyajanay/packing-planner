@@ -1,18 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Trip from "./models/trip";
 import { useNavigate, useParams } from "react-router-dom";
 import "./PackingForm.css";
+import TripContext from "./tripContext/TripContext";
 interface PackingFormProps {
-  trips: Trip[];
-  // tripDate: string;
   onEdit: (trip: Trip, id: string) => void;
 }
-export function PackingForm({ onEdit, trips }: PackingFormProps) {
+export function PackingForm({ onEdit }: PackingFormProps) {
   const navigate = useNavigate();
-
+  const { trips } = useContext(TripContext);
   const _id: string | undefined = useParams().id;
-  const trip: Trip | undefined =
-    trips.find((foundtrip) => foundtrip._id === _id) || undefined;
+  const trip: Trip = trips.find((foundtrip) => foundtrip._id === _id)!;
 
   const [shorts, setShorts] = useState<number>(trip.shorts || 0);
   const [pants, setPants] = useState<number>(trip.pants || 0);
@@ -42,25 +40,9 @@ export function PackingForm({ onEdit, trips }: PackingFormProps) {
       trip._id?.toString() || ""
     );
     navigate("/");
-
-    // setShorts(0);
-    // setPants(0);
-    // setShirts(0);
-    // setSocks(0);
-    // setUnderwear(0);
-    // setSweatshirt(0);
-    // setJacket(0);
   }
   if (trip?._id === undefined) {
     return <p> no trip found</p>;
-
-    // setShorts(trip.shorts || 0);
-    // setPants(trip.pants || 0);
-    // setShirts(trip.shirts || 0);
-    // setSocks(trip.socks || 0);
-    // setUnderwear(trip.underwear || 0);
-    // setSweatshirt(trip.sweatshirt || 0);
-    // setJacket(trip.jacket || 0);
   } else {
     return (
       <form className="packingForm" onSubmit={handleSubmit}>

@@ -18,12 +18,12 @@ export function TripContextProvider({ children }: Props) {
     fetchAndSetTrips();
   };
 
-  const handleDelete = async (trip: Trip) => {
-    await deleteTrip(trip);
+  const handleDelete = async (id: string) => {
+    await deleteTrip(id);
     fetchAndSetTrips();
   };
 
-  const handleEdit = async (trip: Trip, id:string ) => {
+  const handleEdit = async (trip: Trip, id: string) => {
     await editTrip(trip, id);
     fetchAndSetTrips();
   };

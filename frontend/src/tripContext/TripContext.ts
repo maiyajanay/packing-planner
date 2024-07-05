@@ -5,8 +5,8 @@ interface TripContextProps {
   trips: Trip[];
   setTrips: (trips: Trip[]) => void;
   handleAdd: (trip: Trip) => void;
-  handleDelete: (trip: Trip) => void;
-  handleEdit: (trip: Trip) => void;
+  handleDelete: (id: string) => void;
+  handleEdit: (trip: Trip, id: string) => void;
   fetchAndSetTrips: () => void;
 }
 
