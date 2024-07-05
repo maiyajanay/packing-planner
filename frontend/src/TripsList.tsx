@@ -34,3 +34,5 @@ export function TripList({ weather }: TripListProps) {
     </div>
   );
 }
+
+// change to use the usecontext for trip

@@ -25,14 +25,14 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
   // };
   return (
     <div>
-      <p>{trip.name}</p>
-      <p>{trip.to}</p>
-      {weather ? (
+        <p>{trip.name}</p>
+        <p>{trip.to}</p>
+        {weather ? (
         <>
-          <p>Min: {weather.tempMin}</p>
-          <p>Max: {weather.tempMax}</p>
+            <p>Min: {weather.tempMin}°{weather.temperatureUnit}</p>
+            <p>Max: {weather.tempMax}°{weather.temperatureUnit}</p>
         </>
-      ) : (
+        ) : (
         <p>Loading weather...</p>
       )}
       {trip.underwear === 0 && (
@@ -61,5 +61,5 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
         <button onClick={() => OnDelete(trip._id?.toString()!)}> Remove</button>
       )}
     </div>
-  );
+    );
 }

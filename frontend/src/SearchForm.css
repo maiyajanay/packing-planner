@@ -1,0 +1,26 @@
+form {
+    position: relative;
+}
+
+.suggestions {
+position: absolute;
+width: 100%;
+max-height: 150px;
+overflow-y: auto;
+background: white;
+border: 1px solid #ccc;
+border-top: none;
+z-index: 1000;
+list-style-type: none;
+padding: 0;
+margin: 0;
+}
+
+.suggestions li {
+padding: 10px;
+cursor: pointer;
+}
+
+.suggestions li:hover {
+background: #eee;
+}

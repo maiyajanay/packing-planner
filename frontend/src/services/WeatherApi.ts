@@ -1,20 +1,25 @@
 import axios from "axios";
 import { Weather } from "../models/weather";
 
-const API_KEY: string = import.meta.env.VITE_WEATHER_API_KEY || "";
+const BASE_URL = "http://127.0.0.1:5001/gc-packing-planner/us-central1/api";
 
-const BASE_URL = "http://dataservice.accuweather.com/forecasts/v1/daily";
-
-export function fetchOneDayForecastByLocation(query: string): Promise<Weather[]> {
-    const url = `${BASE_URL}/1day/${query}?apikey=${API_KEY}`
-    return axios
-        .get<Weather[]>(url)
-        .then(response => response.data);
+interface AutocompleteResult {
+    Key: string;
+    LocalizedName: string;
 }
 
-export function fetchFiveDayForecastByLocation(query: string): Promise<Weather[]> {
-    const url = `${BASE_URL}/5day/${query}?apikey=${API_KEY}`
-    return axios
-        .get<Weather[]>(url)
-        .then(response => response.data);
+interface ForecastResult {
+    DailyForecasts: Weather[];
 }
+
+export const getAutocompleteSuggestions = async (query: string): Promise<AutocompleteResult[]> => {
+    return (await axios.get(`${BASE_URL}/autocomplete?q=${query}`)).data;
+};
+
+export const fetchOneDayForecastByLocation = async (locationKey: string): Promise<ForecastResult> => {
+    return (await axios.get(`${BASE_URL}/forecast/1day/${locationKey}`)).data;
+};
+
+export const fetchFiveDayForecastByLocation = async (locationKey: string): Promise<ForecastResult> => {
+    return (await axios.get(`${BASE_URL}/forecast/5day/${locationKey}`)).data;
+};
