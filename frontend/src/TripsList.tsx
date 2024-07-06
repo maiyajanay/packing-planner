@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import Trip from "./models/trip";
 import { Weather } from "./models/weather";
 import { TripCard } from "./TripCard";
 import TripContext from "./tripContext/TripContext";
@@ -34,5 +33,3 @@ export function TripList({ weather }: TripListProps) {
     </div>
   );
 }
-
-// change to use the usecontext for trip

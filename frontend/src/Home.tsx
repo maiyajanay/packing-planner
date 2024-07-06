@@ -2,8 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import Trip from "./models/trip";
 import { Weather } from "./models/weather";
 import { Header } from "./Header";
-import { PackingForm } from "./PackingForm";
-import { Link } from "react-router-dom";
 import TripContext from "./tripContext/TripContext";
 import { fetchOneDayForecastByLocation, fetchFiveDayForecastByLocation } from "./services/WeatherApi";
 import { SearchForm } from "./SearchForm";
@@ -11,14 +9,13 @@ import { TripList } from "./TripsList";
 
 export function Home() {
   const { trips, fetchAndSetTrips, handleAdd, handleDelete } = useContext(TripContext);
-  // const [trips, setTrips] = useState<Trip[]>([]);
   const [weather, setWeather] = useState<Weather | null>(null);
 
   useEffect(() => {
     fetchAndSetTrips();
   }, []);
 
-  async function handleSearch(locationKey: string, locationName: string, days: number) {
+  async function handleSearch(tripName: string, locationKey: string, locationName: string, days: number) {
     try {
       const weatherData = days <= 4 
         ? await fetchOneDayForecastByLocation(locationKey)
@@ -28,20 +25,21 @@ export function Home() {
 
       setWeather(selectedWeather);
 
-      await createAndAddTrip(locationName, days, selectedWeather);
+      await createAndAddTrip(tripName, locationName, days, selectedWeather);
     } catch (error) {
       console.error("Failed to fetch weather or create trip:", error);
     }
   }
 
   const createAndAddTrip = async (
+    tripName: string,
     destination: string,
     days: number,
     weather: Weather
   ) => {
     const packingList = calculatePackingList(days, weather);
     const newTrip: Trip = {
-      name: `Trip to ${destination}`,
+      name: tripName || `Trip to ${destination}`,
       to: destination,
       duration: days,
       weather: weather,

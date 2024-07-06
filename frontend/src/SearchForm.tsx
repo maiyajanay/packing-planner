@@ -3,7 +3,7 @@ import { getAutocompleteSuggestions } from "./services/WeatherApi";
 import "./SearchForm.css";
 
 interface SearchFormProps {
-  onSearch: (locationKey: string, locationName: string, days: number) => void;
+  onSearch: (tripName: string, locationKey: string, locationName: string, days: number) => void;
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
@@ -26,7 +26,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   function handleSelect(locationKey: string, locationName: string) {
     setTerm(locationName);
     setSuggestions([]);
-    onSearch(locationKey, locationName, parseInt(days));
+    onSearch(tripName, locationKey, locationName, parseInt(days));
   }
 
 
@@ -35,15 +35,22 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     if (term && days) {
       const selectedSuggestion = suggestions.find(suggestion => suggestion.LocalizedName === term);
       if (selectedSuggestion) {
-        onSearch(selectedSuggestion.Key, selectedSuggestion.LocalizedName, parseInt(days));
+        onSearch(tripName, selectedSuggestion.Key, selectedSuggestion.LocalizedName, parseInt(days));
       }
     }
     setTerm('');
+    setTripName('');
     setDays('');
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        value={tripName}
+        onChange={(e) => setTripName(e.target.value)}
+        placeholder="Name Your Trip"
+      />
       <input
         type="text"
         value={term}
