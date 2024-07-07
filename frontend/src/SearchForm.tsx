@@ -74,7 +74,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         <option value="4">4 days</option>
         <option value="5">5 days</option>
       </select>
-      <button type="submit">Search</button>
+      <button type="submit">Add New Trip</button>
     </form>
   );
 }
