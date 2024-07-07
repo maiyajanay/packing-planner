@@ -6,8 +6,8 @@ export function Header() {
     <>
       <h1>Packing Planner</h1>
       <ul>
-        <NavLink to={"/"}>Home</NavLink>
-        <NavLink to={"/previoustrips"}>Previous Trips</NavLink>
+        <NavLink className='header_button' to={"/"}>Home</NavLink>
+        <NavLink className='header_button' to={"/previoustrips"}>Previous Trips</NavLink>
       </ul>
     </>
   );

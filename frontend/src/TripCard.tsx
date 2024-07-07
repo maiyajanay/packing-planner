@@ -4,6 +4,8 @@ import { Weather } from "./models/weather";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import TripContext from "./tripContext/TripContext";
+import "./TripCard.css"
+
 interface TripCardProps {
   trip: Trip;
   weather: Weather | null;
@@ -24,8 +26,8 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
   //   );
   // };
   return (
-    <div>
-        <p>{trip.name}</p>
+    <div className="trip_card">
+        <h4>{trip.name}</h4>
         <p>{trip.to}</p>
         {weather ? (
         <>
@@ -41,10 +43,11 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
         </button>
       )}
       {trip.underwear !== 0 && (
-        <Link to={`viewpacklist/${trip._id}`}>View Packing List</Link>
+        <Link className='trip_card_button' to={`viewpacklist/${trip._id}`}>View Packing List</Link>
       )}
       {trip.complete ? (
         <button
+          className='trip_card_button'
           onClick={() =>
             OnEdit(
               {
@@ -58,7 +61,7 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
           Restore
         </button>
       ) : (
-        <button onClick={() => OnDelete(trip._id?.toString()!)}> Remove</button>
+        <button className='trip_card_button' onClick={() => OnDelete(trip._id?.toString()!)}> Remove</button>
       )}
     </div>
     );
