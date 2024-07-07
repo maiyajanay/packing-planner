@@ -14,5 +14,5 @@ export default interface Trip {
   jacket?: number;
   complete: boolean;
   weather: Weather;
-  duration?: number;
+  duration: number;
 }

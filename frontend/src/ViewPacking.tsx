@@ -22,11 +22,19 @@ export function ViewPacking() {
     navigate("/");
   }
 
-  return (
+  return (<>
+    <div className="weatherInfo">
+      <h2>Weather</h2>
+
+      <p>{trip.weather?.Temperature.Minimum.Value}{trip.weather?.Temperature.Minimum.Unit}</p>
+      <p>{trip.weather?.Temperature.Maximum.Value}{trip.weather?.Temperature.Maximum.Unit}</p>
+      {/* <p>{trip.weather?.Temperature.Day.HasPrecipitation}</p> */}
+
+      </div>
     <div className="viewList">
       <h1>{trip?.name}</h1>
       <h2>{trip?.to}</h2>
-      <h3>{trip?._id?.toString()}</h3>
+      
       <div className="checklist">
         <label>Shorts: {trip?.shorts}</label>
         <input type="checkbox" readOnly checked={false} />
@@ -48,5 +56,6 @@ export function ViewPacking() {
       <button onClick={() => navigate("/")}>Back</button>
       <button onClick={handleComplete}>Trip Completed</button>
     </div>
+    </>
   );
 }

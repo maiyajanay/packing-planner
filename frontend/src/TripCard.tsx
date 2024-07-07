@@ -4,7 +4,7 @@ import { Weather } from "./models/weather";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import TripContext from "./tripContext/TripContext";
-import "./TripCard.css"
+import "./TripCard.css";
 
 interface TripCardProps {
   trip: Trip;
@@ -15,39 +15,47 @@ interface TripCardProps {
 
 export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
   const navigate = useNavigate();
-  // const { handleEdit } = useContext(TripContext);
-  // const handleClick = () => {
-  //   handleEdit(
-  //     {
-  //       ...trip,
-  //       complete: false,
-  //     },
-  //     trip._id?.toString()!
-  //   );
-  // };
+
+  const tripSum =
+    trip.shorts! +
+    trip.pants! +
+    trip.shirts! +
+    trip.socks! +
+    trip.underwear! +
+    trip.sweatshirt! +
+    trip.jacket!;
   return (
     <div className="trip_card">
-        <h4>{trip.name}</h4>
-        <p>{trip.to}</p>
-        {weather ? (
+      <h4>{trip.name}</h4>
+      <p>{trip.to}</p>
+      <p>Duration: {trip.duration} days</p>
+      {trip.weather ? (
         <>
-            <p>Min: {weather.tempMin}°{weather.temperatureUnit}</p>
-            <p>Max: {weather.tempMax}°{weather.temperatureUnit}</p>
+          <p>
+            Min: {trip.weather.Temperature?.Minimum.Value}°
+            {trip.weather.Temperature?.Minimum.Unit}
+          </p>
+          <p>
+            Max: {trip.weather.Temperature?.Maximum.Value}°
+            {trip.weather.Temperature?.Maximum.Unit}
+          </p>
         </>
-        ) : (
+      ) : (
         <p>Loading weather...</p>
       )}
-      {trip.underwear === 0 && (
+      {tripSum === 0 && (
         <button onClick={() => navigate(`packing/${trip._id}`)}>
           Start Packing
         </button>
       )}
-      {trip.underwear !== 0 && (
-        <Link className='trip_card_button' to={`viewpacklist/${trip._id}`}>View Packing List</Link>
+      {tripSum > 0 && (
+        <Link className="trip_card_button" to={`viewpacklist/${trip._id}`}>
+          View Packing List
+        </Link>
       )}
       {trip.complete ? (
         <button
-          className='trip_card_button'
+          className="trip_card_button"
           onClick={() =>
             OnEdit(
               {
@@ -61,8 +69,13 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
           Restore
         </button>
       ) : (
-        <button className='trip_card_button' onClick={() => OnDelete(trip._id?.toString()!)}> Remove</button>
+        <button
+          className="trip_card_button"
+          onClick={() => OnDelete(trip._id?.toString()!)}
+        >
+          Remove
+        </button>
       )}
     </div>
-    );
+  );
 }

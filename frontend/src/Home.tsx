@@ -3,25 +3,37 @@ import Trip from "./models/trip";
 import { Weather } from "./models/weather";
 import { Header } from "./Header";
 import TripContext from "./tripContext/TripContext";
-import { fetchOneDayForecastByLocation, fetchFiveDayForecastByLocation } from "./services/WeatherApi";
+import {
+  fetchOneDayForecastByLocation,
+  fetchFiveDayForecastByLocation,
+} from "./services/WeatherApi";
 import { SearchForm } from "./SearchForm";
 import { TripList } from "./TripsList";
 
 export function Home() {
-  const { trips, fetchAndSetTrips, handleAdd, handleDelete } = useContext(TripContext);
+  const { trips, fetchAndSetTrips, handleAdd, handleDelete } =
+    useContext(TripContext);
   const [weather, setWeather] = useState<Weather | null>(null);
 
   useEffect(() => {
     fetchAndSetTrips();
   }, []);
 
-  async function handleSearch(tripName: string, locationKey: string, locationName: string, days: number) {
+  async function handleSearch(
+    tripName: string,
+    locationKey: string,
+    locationName: string,
+    days: number
+  ) {
     try {
-      const weatherData = days <= 4 
-        ? await fetchOneDayForecastByLocation(locationKey)
-        : await fetchFiveDayForecastByLocation(locationKey);
-      
-      const selectedWeather = Array.isArray(weatherData) ? weatherData[0] : weatherData;
+      const weatherData =
+        days <= 4
+          ? await fetchOneDayForecastByLocation(locationKey)
+          : await fetchFiveDayForecastByLocation(locationKey);
+
+      const selectedWeather = Array.isArray(weatherData)
+        ? weatherData[0]
+        : weatherData;
 
       setWeather(selectedWeather);
 
@@ -50,7 +62,7 @@ export function Home() {
   };
 
   function calculatePackingList(duration: number, weather: Weather) {
-    const isCold = weather.tempMax < 60; 
+    const isCold = weather.Temperature.Maximum.Value < 60;
     return {
       shirts: duration,
       pants: Math.ceil(duration / 2),
@@ -67,7 +79,7 @@ export function Home() {
       <Header />
       <div>
         <SearchForm onSearch={handleSearch} />
-        <TripList weather={weather}  />
+        <TripList weather={weather} />
       </div>
     </>
   );
