@@ -17,3 +17,7 @@ ul {
     border-radius: 4px;
     cursor: pointer;
 }
+.active {
+    background-color: #fffb00;
+    color: #000;
+}   
