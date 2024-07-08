@@ -6,6 +6,6 @@ const uri: string = functions.config().mongodb.uri;
 const client:MongoClient = new MongoClient(uri);
 
 export const getClient = async () => {
- await client.connect();
- return client;
+    await client.connect();
+    return client;
 };

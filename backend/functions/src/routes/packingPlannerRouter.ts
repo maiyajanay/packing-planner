@@ -39,9 +39,16 @@ packingPlannerRouter.get("/trips/:id", async (req, res) => {
 packingPlannerRouter.post("/trips", async (req, res) => {
   try {
     const trip: Trip = req.body;
+    if (!trip.duration) {
+      return res.status(400).json({ message: "Duration is required" });
+    }
     const client = await getClient();
-    await client.db().collection<Trip>("trips").insertOne(trip);
-    res.status(201).json(trip);
+    const result = await client.db().collection<Trip>("trips").insertOne(trip);
+    if (result.insertedId) {
+      res.status(201).json(trip);
+    } else {
+      res.status(500).json({ message: "Failed to insert trip" });
+    }
   } catch (err) {
     ("Cannot Address");
   }
