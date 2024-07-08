@@ -16,8 +16,11 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     const value = e.target.value;
     setTerm(value);
     if (value.length > 2) {
-      const results = await getAutocompleteSuggestions(value);
+      try {const results = await getAutocompleteSuggestions(value);
       setSuggestions(results);
+      } catch (error) {
+        console.error("Failed to fetch autocomplete suggestions:", error);
+      }
     } else {
       setSuggestions([]);
     }

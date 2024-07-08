@@ -13,6 +13,6 @@ export default interface Trip {
   sweatshirt?: number;
   jacket?: number;
   complete: boolean;
-  weather: Weather;
+  weather?: Weather;
   duration: number;
 }

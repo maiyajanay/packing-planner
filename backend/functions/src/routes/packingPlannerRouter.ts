@@ -49,8 +49,10 @@ packingPlannerRouter.post("/trips", async (req, res) => {
     } else {
       res.status(500).json({ message: "Failed to insert trip" });
     }
+    return;
   } catch (err) {
-    ("Cannot Address");
+    console.error("Cannot Address", err);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
