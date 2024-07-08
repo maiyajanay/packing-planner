@@ -58,6 +58,7 @@ export function Home() {
       complete: false,
       ...packingList,
     };
+    console.log("New trip:", newTrip);  // Add logging here
     await handleAdd(newTrip);
   };
 

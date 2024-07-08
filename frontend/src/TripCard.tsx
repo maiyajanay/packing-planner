@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import Trip from "./models/trip";
 import { Weather } from "./models/weather";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import TripContext from "./tripContext/TripContext";
 import "./TripCard.css";
 
 interface TripCardProps {
@@ -24,6 +22,7 @@ export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
     trip.underwear! +
     trip.sweatshirt! +
     trip.jacket!;
+  
   return (
     <div className="trip_card">
       <h4>{trip.name}</h4>

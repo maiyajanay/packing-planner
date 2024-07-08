@@ -23,12 +23,12 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     }
   }
 
-  function handleSelect(locationKey: string, locationName: string) {
+  function handleSelect(locationKey: string, locationName: string, e: React.MouseEvent) {
+    e.preventDefault();
     setTerm(locationName);
     setSuggestions([]);
     onSearch(tripName, locationKey, locationName, parseInt(days));
   }
-
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -56,17 +56,18 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         value={term}
         onChange={handleChange}
         placeholder="Search Your Destination"
+        required
       />
       {suggestions.length > 0 && (
         <ul className="suggestions">
           {suggestions.map(suggestion => (
-            <li key={suggestion.Key} onClick={() => handleSelect(suggestion.Key, suggestion.LocalizedName)}>
+            <li key={suggestion.Key} onClick={() => handleSelect(suggestion.Key, suggestion.LocalizedName, e)}>
               {suggestion.LocalizedName}
             </li>
           ))}
         </ul>
       )}
-      <select value={days} onChange={(e) => setDays(e.target.value)}>
+      <select value={days} onChange={(e) => setDays(e.target.value)} required>
         <option value="">Select number of days</option>
         <option value="1">1 day</option>
         <option value="2">2 days</option>
