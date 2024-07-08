@@ -8,6 +8,7 @@ interface SearchFormProps {
 
 export function SearchForm({ onSearch }: SearchFormProps) {
   const [term, setTerm] = useState<string>('');
+  const [locationKey, setLocationKey ] = useState<number>(0);
   const [days, setDays] = useState<string>('');
   const [tripName, setTripName] = useState<string>('');
   const [suggestions, setSuggestions] = useState<any[]>([]);
@@ -23,11 +24,12 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     }
   }
 
-  function handleSelect(locationKey: string, locationName: string, e: React.MouseEvent) {
-    e.preventDefault();
+  function handleSelect(locationKey: number, locationName: string) {
     setTerm(locationName);
+    setLocationKey(locationKey);
     setSuggestions([]);
-    onSearch(tripName, locationKey, locationName, parseInt(days));
+    // Call onSearch here if you want immediate search when a location is selected
+    // onSearch(tripName, locationKey, locationName, parseInt(days));
   }
 
   function handleSubmit(e: React.FormEvent) {
@@ -61,7 +63,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       {suggestions.length > 0 && (
         <ul className="suggestions">
           {suggestions.map(suggestion => (
-            <li key={suggestion.Key} onClick={() => handleSelect(suggestion.Key, suggestion.LocalizedName, e)}>
+            <li key={suggestion.Key} onClick={() => handleSelect(suggestion.Key, suggestion.LocalizedName)}>
               {suggestion.LocalizedName}
             </li>
           ))}
