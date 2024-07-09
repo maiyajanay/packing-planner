@@ -1,5 +1,6 @@
 * {
     font-family: 'Roboto', sans-serif;
+    text-align: center; 
 }
 
 button {
@@ -23,3 +24,9 @@ button:hover {
     cursor: pointer;
 }
 
+/* Desktop styles */
+@media (min-width: 768px) {
+    * {
+        text-align: left;
+    }
+}

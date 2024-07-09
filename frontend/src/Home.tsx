@@ -49,31 +49,31 @@ export function Home() {
     days: number,
     weather: Weather
   ) => {
-    const packingList = calculatePackingList(days, weather);
+    // const packingList = calculatePackingList(days, weather);
     const newTrip: Trip = {
       name: tripName || `Trip to ${destination}`,
       to: destination,
       duration: days,
       weather: weather,
       complete: false,
-      ...packingList,
+      // ...packingList,
     };
     console.log("New trip:", newTrip);  // Add logging here
     await handleAdd(newTrip);
   };
 
-  function calculatePackingList(duration: number, weather: Weather) {
-    const isCold = weather.Temperature.Maximum.Value < 60;
-    return {
-      shirts: duration,
-      pants: Math.ceil(duration / 2),
-      shorts: isCold ? 0 : Math.ceil(duration / 2),
-      socks: duration,
-      underwear: duration,
-      sweatshirt: isCold ? Math.ceil(duration / 2) : 0,
-      jacket: isCold ? 1 : 0,
-    };
-  }
+  // function calculatePackingList(duration: number, weather: Weather) {
+  //   const isCold = weather.Temperature.Maximum.Value < 60;
+  //   return {
+  //     shirts: duration,
+  //     pants: Math.ceil(duration / 2),
+  //     shorts: isCold ? 0 : Math.ceil(duration / 2),
+  //     socks: duration,
+  //     underwear: duration,
+  //     sweatshirt: isCold ? Math.ceil(duration / 2) : 0,
+  //     jacket: isCold ? 1 : 0,
+  //   };
+  // }
 
   return (
     <>

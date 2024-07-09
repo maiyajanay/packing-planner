@@ -11,7 +11,7 @@ interface TripCardProps {
   OnEdit: (trip: Trip, id: string) => void;
 }
 
-export function TripCard({ trip, weather, OnDelete, OnEdit }: TripCardProps) {
+export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
   const navigate = useNavigate();
 
   const tripSum =
