@@ -20,7 +20,7 @@ function App() {
         />
         <Route path = "/viewpacklist/:id" element={<ViewPacking />} />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/previoustrips" element = {<PreviousTripLog/>}/>
+        <Route path="/previoustrips" element = {<PreviousTripLog />}/>
       </Routes>
     </BrowserRouter>
   );
