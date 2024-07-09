@@ -92,7 +92,7 @@ interface SearchFormProps {
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
-  const [days, setDays] = useState<string>(0);
+  const [days, setDays] = useState<string>('');
   const [destination, setDestination] = useState<string>('');
   const [tripName, setTripName] = useState<string>('');
 
@@ -134,6 +134,5 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         <button className="form_element" type="submit">Add New Trip</button>
       </form>
     </div>
-
   );
 }
