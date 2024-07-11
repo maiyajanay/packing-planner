@@ -12,6 +12,7 @@ export interface WeatherProperty {
 //   hasPrecipitation: boolean;
 // }
 export interface Weather {
+  Date: string,
   Temperature: {
     Minimum: {
       Value: number;
