@@ -27,7 +27,7 @@ export function Home() {
   ) {
     try {
       const weatherData =
-        days <= 4
+        days === 1
           ? await fetchOneDayForecastByLocation(locationKey)
           : await fetchFiveDayForecastByLocation(locationKey);
 
@@ -86,53 +86,3 @@ export function Home() {
     </>
   );
 }
-
-
-//////////////
-
-// export function Home() {
-//   const { trips, fetchAndSetTrips, handleAdd, handleDelete } =
-//     useContext(TripContext);
-//   const [weather, setWeather] = useState<Weather | null>(null);
-
-//   useEffect(() => {
-//     fetchAndSetTrips();
-//   }, []);
-
-//   async function handleSearch(
-//     tripName: string,
-//     destination: string,
-//     days: number
-//   ) {
-//     try {
-//       await createAndAddTrip(tripName, destination, days);
-//     } catch (error) {
-//       console.error("Failed to create trip:", error);
-//     }
-//   }
-
-//   const createAndAddTrip = async (
-//     tripName: string,
-//     destination: string,
-//     days: number,
-//   ) => {
-//     const newTrip: Trip = {
-//       name: tripName || `Trip to ${destination}`,
-//       to: destination,
-//       duration: days,
-//       complete: false,
-//     };
-//     console.log("New trip:", newTrip); 
-//     await handleAdd(newTrip);
-//   };
-
-//   return (
-//     <>
-//       <Header />
-//       <div>
-//         <SearchForm onSearch={handleSearch} />
-//         <TripList weather={weather} />
-//       </div>
-//     </>
-//   );
-// }

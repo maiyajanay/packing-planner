@@ -4,8 +4,19 @@ import { Weather } from "../models/weather";
 const BASE_URL = "http://127.0.0.1:5001/gc-packing-planner/us-central1/api";
 
 interface AutocompleteResult {
-    Key: string;
-    LocalizedName: string;
+    Version: number,
+    Key: string,
+    Type: string,
+    Rank: number,
+    LocalizedName: string,
+    Country: {
+        ID: string,
+        LocalizedName: string
+    },
+    AdministrativeArea: {
+        ID: string,
+        LocalizedName: string
+    }
 }
 
 interface ForecastResult {
