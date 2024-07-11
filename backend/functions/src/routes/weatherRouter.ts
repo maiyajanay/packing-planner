@@ -8,23 +8,23 @@ const BASE_URL = "http://dataservice.accuweather.com";
 const weatherRouter = express.Router();
 
 interface AutocompleteResult {
-    Version: number,
-    Key: string,
-    Type: string,
-    Rank: number,
-    LocalizedName: string,
-    Country: {
-        ID: string,
-        LocalizedName: string
-    },
-    AdministrativeArea: {
-        ID: string,
-        LocalizedName: string
-    }
+  Version: number;
+  Key: string;
+  Type: string;
+  Rank: number;
+  LocalizedName: string;
+  Country: {
+    ID: string;
+    LocalizedName: string;
+  };
+  AdministrativeArea: {
+    ID: string;
+    LocalizedName: string;
+  };
 }
 
 interface ForecastResult {
-    DailyForecasts: Weather[];
+  DailyForecasts: Weather[];
 }
 
 // const autocompleteResult: AutocompleteResult = {
@@ -274,16 +274,16 @@ weatherRouter.get("/forecast/1day/:locationKey", async (req, res) => {
 });
 
 weatherRouter.get("/forecast/5day/:locationKey", async (req, res) => {
-    const locationKey = req.params.locationKey;
-    const url = `${BASE_URL}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`;
-    
-    try {
-        const response = await axios.get<ForecastResult>(url);
-        res.status(200).json(response.data.DailyForecasts);
-    } catch (error) {
-        console.error("Error fetching five-day forecast:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
+  const locationKey = req.params.locationKey;
+  const url = `${BASE_URL}/forecasts/v1/daily/5day/${locationKey}?apikey=${API_KEY}`;
+
+  try {
+    const response = await axios.get<ForecastResult>(url);
+    res.status(200).json(response.data.DailyForecasts);
+  } catch (error) {
+    console.error("Error fetching five-day forecast:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 export default weatherRouter;

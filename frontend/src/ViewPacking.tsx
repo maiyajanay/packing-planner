@@ -24,8 +24,6 @@ export function ViewPacking() {
 
   return (
     <>
-      {trip.weather === undefined ?? <div> what</div>}
-
       {trip.weather ? (
         <div className="weatherInfo">
           <h2>Weather</h2>
@@ -38,7 +36,7 @@ export function ViewPacking() {
             {trip.weather?.Temperature.Maximum.Value}
             {trip.weather?.Temperature.Maximum.Unit}
           </p>
-          <p>{trip.weather?.Temperature.Day.HasPrecipitation}</p>
+          <p>{trip.weather?.Temperature.Day?.HasPrecipitation}</p>
         </div>
       ) : (
         <p>No Weather</p>
