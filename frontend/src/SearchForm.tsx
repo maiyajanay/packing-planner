@@ -88,26 +88,20 @@ import "./SearchForm.css";
 // }
 
 interface SearchFormProps {
-  onSearch: (
-    tripName: string,
-    locationKey: string,
-    locationName: string,
-    days: number
-  ) => void;
   onSearch: (tripName: string, destination: string, days: number) => void;
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
-  const [days, setDays] = useState<string>('');
-  const [destination, setDestination] = useState<string>('');
-  const [tripName, setTripName] = useState<string>('');
+  const [days, setDays] = useState<string>("");
+  const [destination, setDestination] = useState<string>("");
+  const [tripName, setTripName] = useState<string>("");
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     onSearch(tripName, destination, parseInt(days));
-    setDestination('');
-    setTripName('');
-    setDays('');
+    setDestination("");
+    setTripName("");
+    setDays(""); 
   }
 
   return (
@@ -129,7 +123,12 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           placeholder="Search Your Destination"
           required
         />
-        <select className="form_element" value={days} onChange={(e) => setDays(e.target.value)} required>
+        <select
+          className="form_element"
+          value={days}
+          onChange={(e) => setDays(e.target.value)}
+          required
+        >
           <option value="">Select number of days</option>
           <option value="1">1 day</option>
           <option value="2">2 days</option>
@@ -137,7 +136,9 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           <option value="4">4 days</option>
           <option value="5">5 days</option>
         </select>
-        <button className="form_element" type="submit">Add New Trip</button>
+        <button className="form_element" type="submit">
+          Add New Trip
+        </button>
       </form>
     </div>
   );
