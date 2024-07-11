@@ -56,10 +56,11 @@ export function Home() {
       duration: days,
       weather: weather,
       complete: false,
+      open: false,
       ...packingList,
     };
-    console.log("New trip:", newTrip); 
-    await handleAdd(newTrip);
+    console.log("New trip:", newTrip);  // Add logging here
+    handleAdd(newTrip);
   };
 
   function calculatePackingList(duration: number, weather: Weather) {

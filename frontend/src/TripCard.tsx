@@ -6,23 +6,11 @@ import "./TripCard.css";
 
 interface TripCardProps {
   trip: Trip;
-  weather: Weather | null;
   OnDelete: (id: string) => void;
   OnEdit: (trip: Trip, id: string) => void;
 }
 
 export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
-  const navigate = useNavigate();
-
-  const tripSum =
-    trip.shorts! +
-    trip.pants! +
-    trip.shirts! +
-    trip.socks! +
-    trip.underwear! +
-    trip.sweatshirt! +
-    trip.jacket!;
-  
   return (
     <div className="trip_card">
       <h4>{trip.name}</h4>
@@ -42,13 +30,13 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       ) : (
         <p>Loading weather...</p>
       )}
-      {tripSum === 0 && (
-        <button onClick={() => navigate(`packing/${trip._id}`)}>
+      {trip.open === false && (
+        <Link className="trip_card_button" to={`packing/${trip._id}`}>
           Start Packing
-        </button>
+        </Link>
       )}
-      {tripSum > 0 && (
-        <Link className="trip_card_button" to={`viewpacklist/${trip._id}`}>
+      {trip.open === true && (
+        <Link className="trip_card_button" to={`viewpacklist/${trip?._id}`}>
           View Packing List
         </Link>
       )}

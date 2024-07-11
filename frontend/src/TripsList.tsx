@@ -24,7 +24,6 @@ export function TripList({ weather }: TripListProps) {
             <TripCard
               key={trip._id?.toString()}
               trip={trip}
-              weather={weather}
               OnDelete={handleSendDelete}
               OnEdit={() => {}}
             />

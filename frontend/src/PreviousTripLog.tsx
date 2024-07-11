@@ -3,15 +3,13 @@ import { Header } from "./Header";
 import { TripCard } from "./TripCard";
 import TripContext from "./tripContext/TripContext";
 import Trip from "./models/trip";
-import { Weather } from "./models/weather";
-interface PreviousTripLogProps {
-  weather: Weather | null;
-}
-export function PreviousTripLog({ weather }: PreviousTripLogProps) {
+
+interface PreviousTripLogProps {}
+export function PreviousTripLog({}: PreviousTripLogProps) {
   const { trips, handleEdit } = useContext(TripContext);
-  function handleSendEdit(trip: Trip, id: string) {
-    handleEdit(trip, id);
-  }
+  // function handleSendEdit(trip: Trip, id: string) {
+  //   handleEdit(trip, id);
+  // }
 
   return (
     <>
@@ -23,9 +21,8 @@ export function PreviousTripLog({ weather }: PreviousTripLogProps) {
             <TripCard
               key={trip._id?.toString()}
               trip={trip}
-              weather={weather}
               OnDelete={() => {}}
-              OnEdit={handleSendEdit}
+              OnEdit={(trip) => handleEdit(trip, trip._id?.toString()!)}
             />
           ))}
       </div>
