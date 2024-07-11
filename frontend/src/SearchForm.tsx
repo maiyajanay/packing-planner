@@ -3,22 +3,28 @@ import { getAutocompleteSuggestions } from "./services/WeatherApi";
 import "./SearchForm.css";
 
 interface SearchFormProps {
-  onSearch: (tripName: string, locationKey: string, locationName: string, days: number) => void;
+  onSearch: (
+    tripName: string,
+    locationKey: string,
+    locationName: string,
+    days: number
+  ) => void;
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
-  const [term, setTerm] = useState<string>('');
-  const [locationKey, setLocationKey ] = useState<number>(0);
-  const [days, setDays] = useState<string>('');
-  const [tripName, setTripName] = useState<string>('');
+  const [term, setTerm] = useState<string>("");
+  const [locationKey, setLocationKey] = useState<string>("");
+  const [days, setDays] = useState<string>("");
+  const [tripName, setTripName] = useState<string>("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
 
   async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setTerm(value);
     if (value.length > 2) {
-      try {const results = await getAutocompleteSuggestions(value);
-      setSuggestions(results);
+      try {
+        const results = await getAutocompleteSuggestions(value);
+        setSuggestions(results);
       } catch (error) {
         console.error("Failed to fetch autocomplete suggestions:", error);
       }
@@ -27,25 +33,32 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     }
   }
 
-  function handleSelect(locationKey: number, locationName: string) {
+  function handleSelect(locationKey: string, locationName: string) {
     setTerm(locationName);
     setLocationKey(locationKey);
     setSuggestions([]);
     // Call onSearch here if you want immediate search when a location is selected
-    // onSearch(tripName, locationKey, locationName, parseInt(days));
+    onSearch(tripName, locationKey, locationName, parseInt(days));
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (term && days) {
-      const selectedSuggestion = suggestions.find(suggestion => suggestion.LocalizedName === term);
+      const selectedSuggestion = suggestions.find(
+        (suggestion) => suggestion.LocalizedName === term
+      );
       if (selectedSuggestion) {
-        onSearch(tripName, selectedSuggestion.Key, selectedSuggestion.LocalizedName, parseInt(days));
+        onSearch(
+          tripName,
+          selectedSuggestion.Key,
+          selectedSuggestion.LocalizedName,
+          parseInt(days)
+        );
       }
     }
-    setTerm('');
-    setTripName('');
-    setDays('');
+    setTerm("");
+    setTripName("");
+    setDays("");
   }
 
   return (
@@ -57,6 +70,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         placeholder="Name Your Trip"
       />
       <input
+        
         type="text"
         value={term}
         onChange={handleChange}
@@ -65,8 +79,13 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       />
       {suggestions.length > 0 && (
         <ul className="suggestions">
-          {suggestions.map(suggestion => (
-            <li key={suggestion.Key} onClick={() => handleSelect(suggestion.Key, suggestion.LocalizedName)}>
+          {suggestions.map((suggestion) => (
+            <li
+              key={suggestion.Key}
+              onClick={() =>
+                handleSelect(suggestion.Key, suggestion.LocalizedName)
+              }
+            >
               {suggestion.LocalizedName}
             </li>
           ))}

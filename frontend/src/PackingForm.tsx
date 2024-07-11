@@ -34,8 +34,9 @@ export function PackingForm({ onEdit }: PackingFormProps) {
         underwear: underwear,
         sweatshirt: sweatshirt,
         jacket: jacket,
-        // weather: trip.weather,
+        weather: trip.weather,
         complete: false,
+        open: true,
       },
       trip._id?.toString() || ""
     );
@@ -47,16 +48,16 @@ export function PackingForm({ onEdit }: PackingFormProps) {
     return (
       <>
         <div>
-          {trip.weather ? (
+          {trip?.weather ? (
             <div className="weatherInfo">
               <h2>Weather</h2>
               <p>
-                Min: {trip.weather.Temperature?.Minimum.Value}
-                {trip.weather.Temperature?.Minimum.Unit}
+                Min: {trip.weather?.Temperature?.Minimum.Value}
+                {trip.weather?.Temperature?.Minimum.Unit}
               </p>
               <p>
-                Max: {trip.weather.Temperature?.Maximum.Value}
-                {trip.weather.Temperature?.Maximum.Unit}
+                Max: {trip.weather?.Temperature?.Maximum.Value}
+                {trip.weather?.Temperature?.Maximum.Unit}
               </p>
             </div>
           ) : (
@@ -65,7 +66,12 @@ export function PackingForm({ onEdit }: PackingFormProps) {
         </div>
 
         <form className="packingForm" onSubmit={handleSubmit}>
-          <h1> Create Your Packing List</h1>
+          {trip.open ? (
+            <h1>Update Packing List</h1>
+          ) : (
+            <h1>Create Packing List</h1>
+          )}
+
           <label>
             Name:
             <input type="text" value={trip.name} readOnly />

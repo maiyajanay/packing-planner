@@ -15,4 +15,5 @@ export default interface Trip {
   complete: boolean;
   weather?: Weather;
   duration: number;
+  open?: boolean;
 }

@@ -18,9 +18,13 @@ function App() {
           path="/packing/:id"
           element={<PackingForm onEdit={handleEdit} />}
         />
-        <Route path = "/viewpacklist/:id" element={<ViewPacking />} />
+        <Route path="/viewpacklist/:id" element={<ViewPacking />} />
+        <Route
+          path="/previoustrips/viewpacklist/:id"
+          element={<ViewPacking />}
+        />
         <Route path="*" element={<Navigate to="/" />} />
-        <Route path="/previoustrips" element = {<PreviousTripLog/>}/>
+        <Route path="/previoustrips" element={<PreviousTripLog />} />
       </Routes>
     </BrowserRouter>
   );

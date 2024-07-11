@@ -24,6 +24,8 @@ export function ViewPacking() {
 
   return (
     <>
+      {trip.weather === undefined ?? <div> what</div>}
+
       {trip.weather ? (
         <div className="weatherInfo">
           <h2>Weather</h2>
@@ -36,35 +38,56 @@ export function ViewPacking() {
             {trip.weather?.Temperature.Maximum.Value}
             {trip.weather?.Temperature.Maximum.Unit}
           </p>
-          {/* <p>{trip.weather?.Temperature.Day.HasPrecipitation}</p> */}
+          <p>{trip.weather?.Temperature.Day.HasPrecipitation}</p>
         </div>
       ) : (
         <p>No Weather</p>
       )}
+
       <div className="viewList">
         <h1>{trip?.name}</h1>
         <h2>{trip?.to}</h2>
 
         <div className="checklist">
-          <label>Shorts: {trip?.shorts}</label>
-          <input type="checkbox" readOnly checked={false} />
-          <label>Pants: {trip?.pants}</label>
-          <input type="checkbox" readOnly checked={false} />
-          <label>Shirts: {trip?.shirts}</label>
-          <input type="checkbox" readOnly checked={false} />
-          <label>Socks: {trip?.socks}</label>
-          <input type="checkbox" readOnly checked={false} />
-          <label>Underwear: {trip?.underwear}</label>
-          <input type="checkbox" readOnly checked={false} />
-          <label>Sweatshirt: {trip?.sweatshirt}</label>
-          <input type="checkbox" readOnly checked={false} />
-          <label>Jacket: {trip?.jacket}</label>
-          <input type="checkbox" readOnly checked={false} />
+          <h3>Packing List</h3>
+          <div className="packingCheckbox">
+            <label>Shorts: {trip?.shorts}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
+          <div className="packingCheckbox">
+            <label>Pants: {trip?.pants}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
+          <div className="packingCheckbox">
+            <label>Shirts: {trip?.shirts}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
+          <div className="packingCheckbox">
+            <label>Socks: {trip?.socks}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
+          <div className="packingCheckbox">
+            <label>Underwear: {trip?.underwear}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
+          <div className="packingCheckbox">
+            <label>Sweatshirt: {trip?.sweatshirt}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
+          <div className="packingCheckbox">
+            <label>Jacket: {trip?.jacket}</label>
+            <input type="checkbox" readOnly checked={false} />
+          </div>
         </div>
-        <Link to={`/packing/${trip._id}`}>Edit Packing</Link>
-
-        <button onClick={() => navigate("/")}>Back</button>
-        <button onClick={handleComplete}>Trip Completed</button>
+        {trip?.complete ? (
+          <button onClick={() => navigate("/previoustrips")}> Back </button>
+        ) : (
+          <div>
+            <Link to={`/packing/${trip?._id}`}>Edit Packing</Link>
+            <button onClick={() => navigate("/")}>Back</button>
+            <button onClick={handleComplete}>Trip Completed</button>
+          </div>
+        )}
       </div>
     </>
   );
