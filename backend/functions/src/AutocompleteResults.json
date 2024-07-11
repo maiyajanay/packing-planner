@@ -1,0 +1,15 @@
+{
+    "Version": 1,
+    "Key": "329376",
+    "Type": "City",
+    "Rank": 55,
+    "LocalizedName": "Kalamazoo",
+    "Country": {
+        "ID": "US",
+        "LocalizedName": "United States"
+    },
+    "AdministrativeArea": {
+        "ID": "MI",
+        "LocalizedName": "Michigan"
+    }
+}

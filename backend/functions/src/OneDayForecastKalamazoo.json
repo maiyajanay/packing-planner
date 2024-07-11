@@ -1,0 +1,35 @@
+{
+	"Date": "2024-07-10T07:00:00-04:00",
+	"EpochDate": 1720609200,
+	"Temperature": {
+		"Minimum": {
+			"Value": 60,
+			"Unit": "F",
+			"UnitType": 18
+		},
+		"Maximum": {
+			"Value": 75,
+			"Unit": "F",
+			"UnitType": 18
+		}
+	},
+	"Day": {
+		"Icon": 18,
+		"IconPhrase": "Rain",
+		"HasPrecipitation": true,
+		"PrecipitationType": "Rain",
+		"PrecipitationIntensity": "Heavy"
+	},
+	"Night": {
+		"Icon": 7,
+		"IconPhrase": "Cloudy",
+		"HasPrecipitation": true,
+		"PrecipitationType": "Rain",
+		"PrecipitationIntensity": "Light"
+	},
+	"Sources": [
+		"AccuWeather"
+	],
+	"MobileLink": "http://www.accuweather.com/en/us/kalamazoo-mi/49007/daily-weather-forecast/329376?day=1&lang=en-us",
+	"Link": "http://www.accuweather.com/en/us/kalamazoo-mi/49007/daily-weather-forecast/329376?day=1&lang=en-us"
+}

@@ -1,6 +1,10 @@
-ul {
+.header_container {
+    margin-bottom: 20px;
+}
+
+.header_button_container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; 
 }
 
 .header_button {
@@ -17,7 +21,14 @@ ul {
     border-radius: 4px;
     cursor: pointer;
 }
+
 .active {
     background-color: #fffb00;
     color: #000;
-}   
+}
+
+@media (min-width: 768px) {
+    .header_button_container {
+        justify-content: flex-start; 
+    }
+}
