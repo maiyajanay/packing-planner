@@ -34,7 +34,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     if (term && days) {
       const selectedSuggestion = suggestions.find(suggestion => suggestion.LocalizedName === term);
       if (selectedSuggestion) {
-        onSearch(tripName, selectedSuggestion.Key, selectedSuggestion.LocalizedName, parseInt(days));
+        onSearch(tripName, selectedSuggestion.Key, selectedSuggestion.LocalizedName, parseInt(days, 10));
       }
     }
     setTerm('');
@@ -83,3 +83,5 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     </div>
   );
 }
+
+

@@ -7,6 +7,7 @@ export const getTrips = async (): Promise<Trip[]> => {
 };
 
 export const addTrip = async (trip: Trip): Promise<Trip> => {
+  console.log("Sending trip to database:", trip);
   return (await axios.post(`${baseUrl}/trips`, trip)).data;
 };
 
