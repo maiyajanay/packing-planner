@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import Trip from "../models/trip";
+import { Icons } from "../models/icons";
 
 interface TripContextProps {
   trips: Trip[];
@@ -8,6 +9,7 @@ interface TripContextProps {
   handleDelete: (id: string) => void;
   handleEdit: (trip: Trip, id: string) => void;
   fetchAndSetTrips: () => void;
+  Icons: Icons[];
 }
 
 const defaultTripContext: TripContextProps = {
@@ -17,6 +19,7 @@ const defaultTripContext: TripContextProps = {
   handleDelete: () => {},
   handleEdit: () => {},
   fetchAndSetTrips: () => {},
+  Icons: [],
 };
 
 const TripContext = createContext<TripContextProps>(defaultTripContext);

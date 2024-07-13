@@ -12,20 +12,20 @@ export interface Weather {
       Value: number;
       Unit: string;
     };
-    Day: {
-      Icon: number;
-      IconPhrase: string;
-      HasPrecipitation: boolean;
-      PrecipitationType?: string;
-      PrecipitationIntensity?: string;
-    };
-    Night: {
-      Icon: number;
-      IconPhrase: string;
-      HasPrecipitation: boolean;
-      PrecipitationType?: string;
-      PrecipitationIntensity?: string;
-    };
+  };
+  Day: {
+    Icon: number;
+    IconPhrase: string;
+    HasPrecipitation: boolean;
+    PrecipitationType?: string;
+    PrecipitationIntensity?: string;
+  };
+  Night: {
+    Icon: number;
+    IconPhrase: string;
+    HasPrecipitation: boolean;
+    PrecipitationType?: string;
+    PrecipitationIntensity?: string;
   };
 }
 
