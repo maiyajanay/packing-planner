@@ -19,10 +19,6 @@ interface AutocompleteResult {
     }
 }
 
-interface ForecastResult {
-    DailyForecasts: Weather[];
-}
-
 export const getAutocompleteSuggestions = async (query: string): Promise<AutocompleteResult[]> => {
     return (await axios.get(`${BASE_URL}/autocomplete?q=${query}`)).data;
 };

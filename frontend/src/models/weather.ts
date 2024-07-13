@@ -8,10 +8,11 @@ export interface Weather {
     Minimum: {
       Value: number;
       Unit: string;
-    };
+      };
     Maximum: {
       Value: number;
       Unit: string;
+      };
     };
     Day: {
       Icon: number;
@@ -19,7 +20,7 @@ export interface Weather {
       HasPrecipitation: boolean;
       PrecipitationType?: string;
       PrecipitationIntensity?: string;
-    };
+      };
     Night: {
       Icon: number;
       IconPhrase: string;
@@ -27,13 +28,5 @@ export interface Weather {
       PrecipitationType?: string;
       PrecipitationIntensity?: string;
     };
-  };
 }
 
-// location: string;
-// date: number;
-// tempMin: number;
-// tempMax: number;
-// temperatureUnit: string;
-// icon: string;
-// hasPrecipitation: boolean;

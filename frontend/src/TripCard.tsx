@@ -11,24 +11,34 @@ interface TripCardProps {
 }
 
 export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
+  let firstDayWeather: Weather | null = null;
+
+  if (trip.weather) {
+    if (Array.isArray(trip.weather)) {
+      firstDayWeather = trip.weather[0];
+    } else {
+      firstDayWeather = trip.weather;
+    }
+  }
+
   return (
     <div className="trip_card">
       <h4>{trip.name}</h4>
       <p>{trip.to}</p>
       <p>Duration: {trip.duration} days</p>
-      {trip.weather ? (
+      {firstDayWeather ? (
         <>
           <p>
-            Min: {trip.weather.Temperature?.Minimum.Value}°
-            {trip.weather.Temperature?.Minimum.Unit}
+            Min: {firstDayWeather.Temperature.Minimum.Value}°
+            {firstDayWeather.Temperature.Minimum.Unit}
           </p>
           <p>
-            Max: {trip.weather.Temperature?.Maximum.Value}°
-            {trip.weather.Temperature?.Maximum.Unit}
+            Max: {firstDayWeather.Temperature.Maximum.Value}°
+            {firstDayWeather.Temperature.Maximum.Unit}
           </p>
         </>
       ) : (
-        <p>Loading weather...</p>
+        <p></p>
       )}
       {trip.open === false && (
         <Link className="trip_card_button" to={`packing/${trip._id}`}>

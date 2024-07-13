@@ -1,13 +1,8 @@
 import { useContext } from "react";
-import { Weather } from "./models/weather";
 import { TripCard } from "./TripCard";
 import TripContext from "./tripContext/TripContext";
 
-interface TripListProps {
-  weather: Weather | null;
-}
-
-export function TripList({ weather }: TripListProps) {
+export function TripList() {
   const { trips, handleDelete } = useContext(TripContext);
 
   const handleSendDelete = (id: string) => {

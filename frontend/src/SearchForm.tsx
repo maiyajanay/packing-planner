@@ -8,38 +8,50 @@ interface SearchFormProps {
 
 export function SearchForm({ onSearch }: SearchFormProps) {
   const [term, setTerm] = useState<string>('');
-  const [days, setDays] = useState<string>('');
+  const [days, setDays] = useState<string>('1'); // Initialize with '1' as a string
   const [tripName, setTripName] = useState<string>('');
   const [suggestions, setSuggestions] = useState<any[]>([]);
+  const [selectedDestination, setSelectedDestination] = useState<{ locationName: string; locationKey: string } | null>(null);
 
   async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setTerm(value);
+    console.log(`Value: ${value}`)
     if (value.length > 4) {
       const results = await getAutocompleteSuggestions(value);
       setSuggestions(results);
+      console.log(`Suggestions:`, suggestions);
     } else {
       setSuggestions([]);
     }
   }
 
-  function handleSelect(locationKey: string, locationName: string) {
+  function handleSelect(locationName: string, locationKey: string) {
     setTerm(locationName);
+    setSelectedDestination({ locationName, locationKey });
     setSuggestions([]);
-    onSearch(tripName, locationKey, locationName, parseInt(days));
+    console.log("Days in handleSelect:", days); // Log days value
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (term && days) {
-      const selectedSuggestion = suggestions.find(suggestion => suggestion.LocalizedName === term);
-      if (selectedSuggestion) {
-        onSearch(tripName, selectedSuggestion.Key, selectedSuggestion.LocalizedName, parseInt(days, 10));
-      }
+    console.log("Term:", term);
+    console.log("Trip Name:", tripName);
+    console.log("Days in handleSubmit:", days); // Log days value before parsing
+
+    if (selectedDestination && days && tripName) {
+      const parsedDays = parseInt(days, 10);
+      console.log("Parsed days:", parsedDays); // Log parsed days value
+      console.log("Selected Destination:", selectedDestination);
+      onSearch(tripName, selectedDestination.locationKey, selectedDestination.locationName, parsedDays);
+    } else {
+      console.log("Missing selected destination, days, or tripName.");
     }
+
     setTerm('');
     setTripName('');
-    setDays('');
+    setDays('1');
+    setSelectedDestination(null);
   }
 
   return (
@@ -64,13 +76,16 @@ export function SearchForm({ onSearch }: SearchFormProps) {
         {suggestions.length > 0 && (
           <ul className="suggestions">
             {suggestions.map(suggestion => (
-              <li key={suggestion.Key} onClick={() => handleSelect(suggestion.Key, suggestion.LocalizedName)}>
+              <li key={suggestion.Key} onClick={() => handleSelect(suggestion.LocalizedName, suggestion.Key)}>
                 {suggestion.LocalizedName}, {suggestion.AdministrativeArea.ID}
               </li>
             ))}
           </ul>
         )}
-        <select className="form_element" value={days} onChange={(e) => setDays(e.target.value)} required>
+        <select className="form_element" value={days} onChange={(e) => {
+          console.log("Selected days:", e.target.value); // Log selected value
+          setDays(e.target.value);
+        }} required>
           <option value="">Select number of days</option>
           <option value="1">1 day</option>
           <option value="2">2 days</option>
@@ -83,5 +98,3 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     </div>
   );
 }
-
-
