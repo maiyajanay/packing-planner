@@ -3,9 +3,11 @@ import Trip from "./models/trip";
 import { useContext } from "react";
 import TripContext from "./tripContext/TripContext";
 import "./ViewPacking.css";
+
+
 export function ViewPacking() {
   const navigate = useNavigate();
-  const { trips, fetchAndSetTrips, handleEdit } = useContext(TripContext);
+  const { trips, fetchAndSetTrips, handleEdit, Icons} = useContext(TripContext);
 
   const _id: string | undefined = useParams().id;
   const trip: Trip = trips.find((foundtrip: Trip) => foundtrip._id === _id)!;
@@ -27,20 +29,38 @@ export function ViewPacking() {
       {trip.weather ? (
         <div className="weatherInfo">
           <h2>Weather</h2>
-
-          <p>
-            {trip.weather?.Temperature.Minimum.Value}
-            {trip.weather?.Temperature.Minimum.Unit}
-          </p>
-          <p>
-            {trip.weather?.Temperature.Maximum.Value}
-            {trip.weather?.Temperature.Maximum.Unit}
-          </p>
-          <p>{trip.weather?.Temperature.Day?.HasPrecipitation}</p>
+          {trip.weather.map((dayWeather, index) => (
+            <div key={index}>
+              <h3>Day {index + 1}</h3>
+              <p>
+                Min: {dayWeather.Temperature.Minimum.Value}°
+                {dayWeather.Temperature.Minimum.Unit}
+              </p>
+              <p>
+                Max: {dayWeather.Temperature.Maximum.Value}°
+                {dayWeather.Temperature.Maximum.Unit}
+              </p>
+              <p>{dayWeather.Day.HasPrecipitation ? "Precipitation" : "No Precipitation"}</p>
+              {dayWeather.Day.HasPrecipitation && (
+                <>
+                  <p>Type: {dayWeather.Day.PrecipitationType}</p>
+                  <p>Intensity: {dayWeather.Day.PrecipitationIntensity}</p>
+                </>
+              )}
+              <p>{dayWeather.Day.IconPhrase}</p>
+              {Icons.map((icon) => {
+                if (icon.id === dayWeather.Day.Icon) {
+                  return <img key={icon.id} src={icon.icon} alt="icon" />;
+                }
+                return null;
+              })}
+            </div>
+          ))}
         </div>
       ) : (
         <p>No Weather</p>
       )}
+
 
       <div className="viewList">
         <h1>{trip?.name}</h1>
