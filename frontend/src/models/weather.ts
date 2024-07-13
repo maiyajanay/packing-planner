@@ -3,6 +3,7 @@ export interface WeatherProperty {
 }
 
 export interface Weather {
+  Date: string,
   Temperature: {
     Minimum: {
       Value: number;

@@ -27,10 +27,10 @@ export const getAutocompleteSuggestions = async (query: string): Promise<Autocom
     return (await axios.get(`${BASE_URL}/autocomplete?q=${query}`)).data;
 };
 
-export const fetchOneDayForecastByLocation = async (locationKey: string): Promise<ForecastResult> => {
+export const fetchOneDayForecastByLocation = async (locationKey: string): Promise<Weather> => {
     return (await axios.get(`${BASE_URL}/forecast/1day/${locationKey}`)).data;
 };
 
-export const fetchFiveDayForecastByLocation = async (locationKey: string): Promise<ForecastResult> => {
+export const fetchFiveDayForecastByLocation = async (locationKey: string): Promise<Weather[]> => {
     return (await axios.get(`${BASE_URL}/forecast/5day/${locationKey}`)).data;
 };

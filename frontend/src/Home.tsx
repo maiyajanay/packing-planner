@@ -25,6 +25,7 @@ export function Home() {
     locationName: string,
     days: number
   ) {
+    console.log("Days parameter in handleSearch:", days); 
     try {
       const weatherData =
         days === 1
@@ -49,6 +50,7 @@ export function Home() {
     days: number,
     weather: Weather
   ) => {
+    console.log("Days parameter in createAndAddTrip:", days);
     const packingList = calculatePackingList(days, weather);
     const newTrip: Trip = {
       name: tripName || `Trip to ${destination}`,
@@ -59,6 +61,7 @@ export function Home() {
       open: false,
       ...packingList,
     };
+    console.log("New trip duration:", days);
     console.log("New trip:", newTrip);  // Add logging here
     handleAdd(newTrip);
   };
