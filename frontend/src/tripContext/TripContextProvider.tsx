@@ -60,6 +60,7 @@ export function TripContextProvider({ children }: Props) {
 
   const handleAdd = async (trip: Trip) => {
     await addTrip(trip);
+    fetchAndSetTrips();
   };
 
   const handleDelete = async (id: string) => {
