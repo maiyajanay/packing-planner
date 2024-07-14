@@ -3,6 +3,8 @@ import Trip from "./models/trip";
 import { useNavigate, useParams } from "react-router-dom";
 import "./PackingForm.css";
 import TripContext from "./tripContext/TripContext";
+import { Weather } from "./models/weather";
+import { WeatherCard } from "./WeatherCard";
 interface PackingFormProps {
   onEdit: (trip: Trip, id: string) => void;
 }
@@ -46,23 +48,22 @@ export function PackingForm({ onEdit }: PackingFormProps) {
     return <p> no trip found</p>;
   } else {
     return (
-      <>
-        <div>
-          {trip?.weather ? (
-            <div className="weatherInfo">
-              <h2>Weather</h2>
-              <p>
-                Min: {trip.weather?.Temperature?.Minimum.Value}
-                {trip.weather?.Temperature?.Minimum.Unit}
-              </p>
-              <p>
-                Max: {trip.weather?.Temperature?.Maximum.Value}
-                {trip.weather?.Temperature?.Maximum.Unit}
-              </p>
-            </div>
-          ) : (
-            <p>No Weather</p>
-          )}
+      <div className="packing">
+        <div className="weather">
+          <div className="weatherHeader">
+            <h2>Weather</h2>
+          </div>
+          <div className="weatherReport">
+            {Array.isArray(trip.weather) ? (
+              trip.weather
+                ?.slice(0, trip.duration)
+                .map((forecast: Weather) => (
+                  <WeatherCard key={forecast.Date} forecast={forecast} />
+                ))
+            ) : (
+              <WeatherCard key={0} forecast={trip.weather!} />
+            )}
+          </div>
         </div>
 
         <form className="packingForm" onSubmit={handleSubmit}>
@@ -141,10 +142,14 @@ export function PackingForm({ onEdit }: PackingFormProps) {
               onChange={(e) => setJacket(parseInt(e.target.value))}
             />
           </label>
-          <button type="submit">Save Trip</button>
-          <button onClick={() => navigate("/")}>Cancel</button>
+          <button className="packingButton" type="submit">
+            Save Trip
+          </button>
+          <button className="packingButton" onClick={() => navigate("/")}>
+            Cancel
+          </button>
         </form>
-      </>
+      </div>
     );
   }
 }

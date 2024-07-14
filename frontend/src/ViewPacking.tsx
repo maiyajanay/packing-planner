@@ -3,11 +3,13 @@ import Trip from "./models/trip";
 import { useContext } from "react";
 import TripContext from "./tripContext/TripContext";
 import "./ViewPacking.css";
-
+import { WeatherCard } from "./WeatherCard";
+import { Weather } from "./models/weather";
 
 export function ViewPacking() {
   const navigate = useNavigate();
-  const { trips, fetchAndSetTrips, handleEdit, Icons} = useContext(TripContext);
+  const { trips, fetchAndSetTrips, handleEdit, Icons } =
+    useContext(TripContext);
 
   const _id: string | undefined = useParams().id;
   const trip: Trip = trips.find((foundtrip: Trip) => foundtrip._id === _id)!;
@@ -25,37 +27,23 @@ export function ViewPacking() {
   }
 
   return (
-    <>
-
-      {trip.weather ? (
-        <div className="weatherInfo">
+    <div className="viewPacking">
+      <div className="viewWeather">
+        <div>
           <h2>Weather</h2>
-
-          <p>
-            {trip.weather?.Temperature.Minimum.Value}
-            {trip.weather?.Temperature.Minimum.Unit}
-            
-          </p>
-          <p>
-            {trip.weather?.Temperature.Maximum.Value}
-            {trip.weather?.Temperature.Maximum.Unit}
-          </p>
-          <p>{trip.weather?.Day?.HasPrecipitation}</p>
-          <p>{trip.weather?.Day?.PrecipitationType}</p>
-          <p>{trip.weather?.Day?.PrecipitationIntensity}</p>
-          {Icons.map((icon) => {
-            if (icon.id === trip.weather?.Day.Icon) {
-              return <img src={icon.icon} alt="icon" />;
-            }
-            return null;
-          }
-         
-
-          <p>{trip.weather?.Day.IconPhrase}</p>
         </div>
-      ) : (
-        <p>No Weather</p>
-      )}
+        <div className="weatherReport">
+          {Array.isArray(trip.weather) ? (
+            trip.weather
+              ?.slice(0, trip.duration)
+              .map((forecast: Weather) => (
+                <WeatherCard key={forecast.Date} forecast={forecast} />
+              ))
+          ) : (
+            <WeatherCard key={0} forecast={trip.weather!} />
+          )}
+        </div>
+      </div>
 
       <div className="viewList">
         <h1>{trip?.name}</h1>
@@ -102,6 +90,6 @@ export function ViewPacking() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

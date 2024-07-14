@@ -11,7 +11,7 @@ import { SearchForm } from "./SearchForm";
 import { TripList } from "./TripsList";
 
 export function Home() {
-  const { trips, fetchAndSetTrips, handleAdd, handleDelete } =
+  const { trips, fetchAndSetTrips, handleAdd } =
     useContext(TripContext);
   const [weather, setWeather] = useState<Weather | null>(null);
 
