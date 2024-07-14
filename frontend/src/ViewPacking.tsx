@@ -3,11 +3,13 @@ import Trip from "./models/trip";
 import { useContext } from "react";
 import TripContext from "./tripContext/TripContext";
 import "./ViewPacking.css";
-
+import { WeatherCard } from "./WeatherCard";
+import { Weather } from "./models/weather";
 
 export function ViewPacking() {
   const navigate = useNavigate();
-  const { trips, fetchAndSetTrips, handleEdit, Icons} = useContext(TripContext);
+  const { trips, fetchAndSetTrips, handleEdit, Icons } =
+    useContext(TripContext);
 
   const _id: string | undefined = useParams().id;
   const trip: Trip = trips.find((foundtrip: Trip) => foundtrip._id === _id)!;
@@ -25,41 +27,23 @@ export function ViewPacking() {
   }
 
   return (
-    <>
-      {trip.weather ? (
-        <div className="weatherInfo">
+    <div className="viewPacking">
+      <div className="viewWeather">
+        <div>
           <h2>Weather</h2>
-          {trip.weather.map((dayWeather, index) => (
-            <div key={index}>
-              <h3>Day {index + 1}</h3>
-              <p>
-                Min: {dayWeather.Temperature.Minimum.Value}°
-                {dayWeather.Temperature.Minimum.Unit}
-              </p>
-              <p>
-                Max: {dayWeather.Temperature.Maximum.Value}°
-                {dayWeather.Temperature.Maximum.Unit}
-              </p>
-              <p>{dayWeather.Day.HasPrecipitation ? "Precipitation" : "No Precipitation"}</p>
-              {dayWeather.Day.HasPrecipitation && (
-                <>
-                  <p>Type: {dayWeather.Day.PrecipitationType}</p>
-                  <p>Intensity: {dayWeather.Day.PrecipitationIntensity}</p>
-                </>
-              )}
-              <p>{dayWeather.Day.IconPhrase}</p>
-              {Icons.map((icon) => {
-                if (icon.id === dayWeather.Day.Icon) {
-                  return <img key={icon.id} src={icon.icon} alt="icon" />;
-                }
-                return null;
-              })}
-            </div>
-          ))}
         </div>
-      ) : (
-        <p>No Weather</p>
-      )}
+        <div className="weatherReport">
+          {Array.isArray(trip.weather) ? (
+            trip.weather
+              ?.slice(0, trip.duration)
+              .map((forecast: Weather) => (
+                <WeatherCard key={forecast.Date} forecast={forecast} />
+              ))
+          ) : (
+            <WeatherCard key={0} forecast={trip.weather!} />
+          )}
+        </div>
+      </div>
 
 
       <div className="viewList">
@@ -107,6 +91,6 @@ export function ViewPacking() {
           </div>
         )}
       </div>
-    </>
+    </div>
   );
 }

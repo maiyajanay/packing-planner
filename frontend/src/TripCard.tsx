@@ -26,20 +26,34 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       <h4>{trip.name}</h4>
       <p>{trip.to}</p>
       <p>Duration: {trip.duration} days</p>
-      {firstDayWeather ? (
-        <>
+      {Array.isArray(trip.weather) ? (
+        <div>
+          Date(s): <p>{trip.weather[0]?.Date?.substring(0, 10)} - {trip.weather[trip.duration]?.Date?.substring(0, 10)}</p>
           <p>
-            Min: {firstDayWeather.Temperature.Minimum.Value}°
-            {firstDayWeather.Temperature.Minimum.Unit}
+            Max Temp During Trip:{" "}
+            {Math.max(...trip.weather.map((o) => o.Temperature?.Maximum.Value))}
+            °{trip.weather[0].Temperature?.Maximum.Unit}
           </p>
           <p>
-            Max: {firstDayWeather.Temperature.Maximum.Value}°
-            {firstDayWeather.Temperature.Maximum.Unit}
+            Minimum Temp During Trip:{" "}
+            {Math.min(...trip.weather.map((o) => o.Temperature?.Minimum.Value))}
+            °{trip.weather[0].Temperature?.Minimum.Unit}
           </p>
-        </>
+        </div>
       ) : (
-        <p></p>
+        <div>
+          Date(s): <p>{trip.weather?.Date?.substring(0, 10)}</p>
+          <p>
+            Max Temp During Trip: {trip.weather!.Temperature?.Maximum.Value}°
+            {trip.weather!.Temperature?.Maximum.Unit}
+          </p>
+          <p>
+            Min Temp During Trip: {trip.weather!.Temperature?.Minimum.Value}°
+            {trip.weather!.Temperature?.Minimum.Unit}
+          </p>
+        </div>
       )}
+
       {trip.open === false && (
         <Link className="trip_card_button" to={`packing/${trip._id}`}>
           Start Packing
