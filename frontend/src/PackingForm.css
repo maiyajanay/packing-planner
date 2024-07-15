@@ -23,3 +23,7 @@ input{
 width: 25%;
 margin: 10px;
 }
+
+button {
+  background-color: green;
+}

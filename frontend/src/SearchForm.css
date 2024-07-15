@@ -47,7 +47,7 @@ select {
 }
 
 @media (min-width: 768px) {
-    form {
+    .form_container {
         justify-content: flex-start; 
     }
 }
