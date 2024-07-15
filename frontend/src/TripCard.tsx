@@ -11,6 +11,16 @@ interface TripCardProps {
 }
 
 export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
+  let firstDayWeather: Weather | null = null;
+
+  if (trip.weather) {
+    if (Array.isArray(trip.weather)) {
+      firstDayWeather = trip.weather[0];
+    } else {
+      firstDayWeather = trip.weather;
+    }
+  }
+
   return (
     <div className="trip_card">
       <h4>{trip.name}</h4>

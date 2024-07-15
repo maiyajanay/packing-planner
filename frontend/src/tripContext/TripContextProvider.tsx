@@ -1,4 +1,3 @@
-// TripContextProvider.tsx
 import TripContext from "./TripContext";
 import { getTrips, addTrip, deleteTrip, editTrip } from "../services/TripDbApi";
 import { useState } from "react";
@@ -66,12 +65,10 @@ export function TripContextProvider({ children }: Props) {
 
   const handleDelete = async (id: string) => {
     await deleteTrip(id);
-    fetchAndSetTrips();
   };
 
   const handleEdit = async (trip: Trip, id: string) => {
     await editTrip(trip, id);
-    fetchAndSetTrips();
   };
 
   return (

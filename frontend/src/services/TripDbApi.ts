@@ -8,10 +8,16 @@ export const getTrips = async (): Promise<Trip[]> => {
 
 export const addTrip = async (trip: Trip): Promise<Trip> => {
   console.log("Sending trip to database:", trip);
+  if (trip.weather) {
+    trip.weather = Array.isArray(trip.weather) ? trip.weather : [trip.weather];
+  }
   return (await axios.post(`${baseUrl}/trips`, trip)).data;
 };
 
 export const editTrip = async (trip: Trip, id: string): Promise<Trip> => {
+  if (trip.weather) {
+    trip.weather = Array.isArray(trip.weather) ? trip.weather : [trip.weather];
+  }
   return (await axios.put(`${baseUrl}/trips/${encodeURIComponent(id)}`, trip))
     .data;
 };

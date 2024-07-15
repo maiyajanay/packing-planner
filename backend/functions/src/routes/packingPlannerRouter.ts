@@ -39,6 +39,7 @@ packingPlannerRouter.get("/trips/:id", async (req, res) => {
 packingPlannerRouter.post("/trips", async (req, res) => {
   try {
     const trip: Trip = req.body;
+    console.log("Received new trip:", trip);
     const client = await getClient();
     const result = await client.db().collection<Trip>("trips").insertOne(trip);
     if (result.insertedId) {
@@ -46,10 +47,9 @@ packingPlannerRouter.post("/trips", async (req, res) => {
     } else {
       res.status(500).json({ message: "Failed to insert trip" });
     }
-    return;
   } catch (err) {
-    console.error("Cannot Address", err);
-    return res.status(500).json({ message: "Internal Server Error" });
+    console.error("Cannot insert trip", err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 

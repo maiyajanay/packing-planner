@@ -11,9 +11,8 @@ import { SearchForm } from "./SearchForm";
 import { TripList } from "./TripsList";
 
 export function Home() {
-  const { trips, fetchAndSetTrips, handleAdd } =
-    useContext(TripContext);
-  const [weather, setWeather] = useState<Weather | null>(null);
+  const { trips, fetchAndSetTrips, handleAdd, handleDelete } = useContext(TripContext);
+  const [weather, setWeather] = useState<Weather[] | null>(null);
 
   useEffect(() => {
     fetchAndSetTrips();
@@ -25,20 +24,16 @@ export function Home() {
     locationName: string,
     days: number
   ) {
-    console.log("Days parameter in handleSearch:", days); 
+    console.log("Days parameter in handleSearch:", days);
     try {
       const weatherData =
         days === 1
-          ? await fetchOneDayForecastByLocation(locationKey)
+          ? [await fetchOneDayForecastByLocation(locationKey)]
           : await fetchFiveDayForecastByLocation(locationKey);
 
-      const selectedWeather = Array.isArray(weatherData)
-        ? weatherData[0]
-        : weatherData;
-
-      setWeather(selectedWeather);
-
-      await createAndAddTrip(tripName, locationName, days, selectedWeather);
+      console.log("Fetched weather data:", weatherData); // Log weather data
+      setWeather(weatherData);
+      await createAndAddTrip(tripName, locationName, days, weatherData);
     } catch (error) {
       console.error("Failed to fetch weather or create trip:", error);
     }
@@ -48,10 +43,11 @@ export function Home() {
     tripName: string,
     destination: string,
     days: number,
-    weather: Weather
+    weather: Weather[]
   ) => {
-    console.log("Days parameter in createAndAddTrip:", days);
-    const packingList = calculatePackingList(days, weather);
+    console.log("Weather data in createAndAddTrip:", weather);
+    console.log("Days parameter in createAndAddTrip:", days); // Log days value
+    const packingList = calculatePackingList(days, weather[0]);
     const newTrip: Trip = {
       name: tripName || `Trip to ${destination}`,
       to: destination,
@@ -62,7 +58,7 @@ export function Home() {
       ...packingList,
     };
     console.log("New trip duration:", days);
-    console.log("New trip:", newTrip);  // Add logging here
+    console.log("New trip:", newTrip); // Log new trip object
     handleAdd(newTrip);
   };
 
@@ -84,7 +80,7 @@ export function Home() {
       <Header />
       <div>
         <SearchForm onSearch={handleSearch} />
-        <TripList weather={weather} />
+        <TripList />
       </div>
     </>
   );

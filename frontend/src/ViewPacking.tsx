@@ -45,6 +45,7 @@ export function ViewPacking() {
         </div>
       </div>
 
+
       <div className="viewList">
         <h1>{trip?.name}</h1>
         <h2>{trip?.to}</h2>
