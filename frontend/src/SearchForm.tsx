@@ -8,7 +8,7 @@ interface SearchFormProps {
 
 export function SearchForm({ onSearch }: SearchFormProps) {
   const [term, setTerm] = useState<string>('');
-  const [days, setDays] = useState<string>('1'); // Initialize with '1' as a string
+  const [days, setDays] = useState<string>(''); // Initialize with '1' as a string
   const [tripName, setTripName] = useState<string>('');
   const [suggestions, setSuggestions] = useState<any[]>([]);
   const [selectedDestination, setSelectedDestination] = useState<{ locationName: string; locationKey: string } | null>(null);
@@ -50,7 +50,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
 
     setTerm('');
     setTripName('');
-    setDays('1');
+    setDays('');
     setSelectedDestination(null);
   }
 
