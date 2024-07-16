@@ -1,23 +1,107 @@
+.weatherReport {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#weatherTitle {
+  margin-bottom: 10px;
+}
+.weatherInfo {
+  width: 90%;
+  font-size: 8px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.packingCheckbox {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
+  align-items: center;
+}
 .viewList {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
+
 .checklist {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  font-size: small;
   margin-bottom: 20px;
 }
-.weatherReport {
-  display: flex;
-  flex-direction: row;
+.name {
+  font-size: 15px;
 }
-.viewPacking{
+.to {
+  font-size: 12px;
+}
+.dayIcon {
+  width: 50px;
+  height: 35px;
+}
+.nightIcon {
+  width: 50px;
+  height: 35px;
+}
+#back {
+  margin-right: 10px;
+  
+}
+#complete {
+  margin-right: 0px;
+  margin-left: 10px;
+}
+@media (min-width: 768px) {
+  .viewPacking {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    height: fit-content;
+  }
+  .viewList {
+    height: 50%;
+    width: 50%;
+  }
+  .name {
+    font-size: 50px;
+  }
+  .to {
+    font-size: 40px;
+  }
+  .dayIcon {
+    width: 75px;
+    height: 45px;
+  }
+  .nightIcon {
+    width: 75px;
+    height: 45px;
+  }
+  .checklist {
+    font-size: large;
+  }
+  .viewButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .viewWeather {
+    width: 70%;
+  }
+
+  .actionButtons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: space-evenly;
+  }
+  #weatherTitle {
+    text-align: center;
+  }
 }

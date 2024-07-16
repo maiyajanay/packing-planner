@@ -30,7 +30,7 @@ export function ViewPacking() {
     <div className="viewPacking">
       <div className="viewWeather">
         <div>
-          <h2>Weather</h2>
+          <h2 id="weatherTitle">Weather</h2>
         </div>
         <div className="weatherReport">
           {Array.isArray(trip.weather) ? (
@@ -45,10 +45,9 @@ export function ViewPacking() {
         </div>
       </div>
 
-
       <div className="viewList">
-        <h1>{trip?.name}</h1>
-        <h2>{trip?.to}</h2>
+        <h1 className="name">{trip?.name}</h1>
+        <h2 className="to">{trip?.to}</h2>
 
         <div className="checklist">
           <h3>Packing List</h3>
@@ -84,10 +83,14 @@ export function ViewPacking() {
         {trip?.complete ? (
           <button onClick={() => navigate("/previoustrips")}> Back </button>
         ) : (
-          <div>
-            <Link to={`/packing/${trip?._id}`}>Edit Packing</Link>
-            <button onClick={() => navigate("/")}>Back</button>
-            <button onClick={handleComplete}>Trip Completed</button>
+          <div className="viewButtons">
+            <div className="editButton">
+              <Link to={`/packing/${trip?._id}`}>Edit Packing</Link>
+            </div>
+            <div className="actionButtons">
+              <button id="back" onClick={() => navigate("/")}>Back</button>
+              <button  id="complete" onClick={handleComplete}>Trip Completed</button>
+            </div>
           </div>
         )}
       </div>

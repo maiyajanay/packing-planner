@@ -23,7 +23,7 @@ export function WeatherCard({ forecast }: WeatherCardProps) {
       <div>
         <h3>Forecast During the Day</h3>
         {Icons.find((icon) => icon.id === forecast.Day.Icon) ? (
-          <img
+          <img className="dayIcon"
             src={Icons.find((icon) => icon.id === forecast.Day.Icon)?.src}
             alt="icon"
           />
@@ -41,7 +41,7 @@ export function WeatherCard({ forecast }: WeatherCardProps) {
         </p>
         <h3>Forecast For the Night</h3>
         {Icons.find((icon) => icon.id === forecast.Night.Icon) ? (
-          <img
+          <img className="nightIcon"
             src={Icons.find((icon) => icon.id === forecast.Night.Icon)?.src}
             alt="icon"
           />
@@ -51,7 +51,7 @@ export function WeatherCard({ forecast }: WeatherCardProps) {
         <p>{forecast.Night.IconPhrase}</p>
         <p>
           Preciptation expected? :
-          {forecast.Night.HasPrecipitation ? "Yes" : "No"}
+          {" "}{forecast.Night.HasPrecipitation ? "Yes" : "No"}
         </p>
         <p>
           {forecast.Night?.PrecipitationIntensity}{" "}
