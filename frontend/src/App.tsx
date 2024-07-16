@@ -7,6 +7,7 @@ import { PreviousTripLog } from "./PreviousTripLog";
 import TripContext from "./tripContext/TripContext";
 import "./SearchForm.css";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { trips, handleEdit } = useContext(TripContext);
@@ -23,10 +24,22 @@ function App() {
           path="/previoustrips/viewpacklist/:id"
           element={<ViewPacking />}
         />
-        
+
         <Route path="/previoustrips" element={<PreviousTripLog />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </BrowserRouter>
   );
 }

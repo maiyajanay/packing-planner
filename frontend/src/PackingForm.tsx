@@ -5,10 +5,23 @@ import "./PackingForm.css";
 import TripContext from "./tripContext/TripContext";
 import { Weather } from "./models/weather";
 import { WeatherCard } from "./WeatherCard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface PackingFormProps {
   onEdit: (trip: Trip, id: string) => void;
 }
 export function PackingForm({ onEdit }: PackingFormProps) {
+  const notify = () =>
+    toast.success("Trip Saved!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const navigate = useNavigate();
   const { trips } = useContext(TripContext);
   const _id: string | undefined = useParams().id;
@@ -142,7 +155,7 @@ export function PackingForm({ onEdit }: PackingFormProps) {
               onChange={(e) => setJacket(parseInt(e.target.value))}
             />
           </label>
-          <button className="packingButton" type="submit">
+          <button className="packingButton" type="submit" onClick={notify}>
             Save Trip
           </button>
           <button className="packingButton" onClick={() => navigate("/")}>
