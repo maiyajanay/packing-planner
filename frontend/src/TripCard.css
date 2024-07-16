@@ -1,5 +1,5 @@
 .trip_card {
-    margin: 5px;
+    margin: 10px;
     padding: 10px;
     border: 1px solid #263A99;
     border-radius: 5px;
@@ -25,3 +25,4 @@
     background-color: #c4ddff;
     cursor: pointer;
 }
+
