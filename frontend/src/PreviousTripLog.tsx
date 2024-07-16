@@ -2,7 +2,8 @@ import { useContext } from "react";
 import { Header } from "./Header";
 import { TripCard } from "./TripCard";
 import TripContext from "./tripContext/TripContext";
-import Trip from "./models/trip";
+import "./PreviousTripLog.css";
+
 
 interface PreviousTripLogProps {}
 export function PreviousTripLog({}: PreviousTripLogProps) {
@@ -12,20 +13,23 @@ export function PreviousTripLog({}: PreviousTripLogProps) {
   // }
 
   return (
-    <>
+    <div>
       <Header />
-      <div>
-        {trips
-          .filter((trip) => trip.complete)
-          .map((trip) => (
-            <TripCard
-              key={trip._id?.toString()}
-              trip={trip}
-              OnDelete={() => {}}
-              OnEdit={(trip) => handleEdit(trip, trip._id?.toString()!)}
-            />
-          ))}
+      <div className="past_trip_container">
+        <h2>Your Past Trips</h2>
+        <div>
+          {trips
+            .filter((trip) => trip.complete)
+            .map((trip) => (
+              <TripCard
+                key={trip._id?.toString()}
+                trip={trip}
+                OnDelete={() => {}}
+                OnEdit={(trip) => handleEdit(trip, trip._id?.toString()!)}
+              />
+            ))}
+        </div>
       </div>
-    </>
+    </div>
   );
 }
