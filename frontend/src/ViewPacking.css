@@ -104,4 +104,8 @@
   #weatherTitle {
     text-align: center;
   }
+  .weatherInfo{
+    width: fit-content;
+    font-size: large ;
+  }
 }

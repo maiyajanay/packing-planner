@@ -5,12 +5,22 @@ import TripContext from "./tripContext/TripContext";
 import "./ViewPacking.css";
 import { WeatherCard } from "./WeatherCard";
 import { Weather } from "./models/weather";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export function ViewPacking() {
   const navigate = useNavigate();
-  const { trips, fetchAndSetTrips, handleEdit, Icons } =
-    useContext(TripContext);
-
+  const { trips, fetchAndSetTrips, handleEdit } = useContext(TripContext);
+  const complete = () =>
+    toast.success("Trip Completed!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   const _id: string | undefined = useParams().id;
   const trip: Trip = trips.find((foundtrip: Trip) => foundtrip._id === _id)!;
 
@@ -23,6 +33,7 @@ export function ViewPacking() {
       trip?._id?.toString() || ""
     );
     fetchAndSetTrips();
+    complete();
     navigate("/");
   }
 
@@ -88,8 +99,12 @@ export function ViewPacking() {
               <Link to={`/packing/${trip?._id}`}>Edit Packing</Link>
             </div>
             <div className="actionButtons">
-              <button id="back" onClick={() => navigate("/")}>Back</button>
-              <button  id="complete" onClick={handleComplete}>Trip Completed</button>
+              <button id="back" onClick={() => navigate("/")}>
+                Back
+              </button>
+              <button id="complete" onClick={handleComplete}>
+                Trip Completed
+              </button>
             </div>
           </div>
         )}

@@ -1,22 +1,41 @@
 import { useState } from "react";
 import { getAutocompleteSuggestions } from "./services/WeatherApi";
 import "./SearchForm.css";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface SearchFormProps {
-  onSearch: (tripName: string, locationKey: string, locationName: string, days: number) => void;
+  onSearch: (
+    tripName: string,
+    locationKey: string,
+    locationName: string,
+    days: number
+  ) => void;
 }
 
 export function SearchForm({ onSearch }: SearchFormProps) {
-  const [term, setTerm] = useState<string>('');
-  const [days, setDays] = useState<string>(''); // Initialize with '1' as a string
-  const [tripName, setTripName] = useState<string>('');
+  const [term, setTerm] = useState<string>("");
+  const [days, setDays] = useState<string>(""); // Initialize with '1' as a string
+  const [tripName, setTripName] = useState<string>("");
   const [suggestions, setSuggestions] = useState<any[]>([]);
-  const [selectedDestination, setSelectedDestination] = useState<{ locationName: string; locationKey: string } | null>(null);
-
+  const [selectedDestination, setSelectedDestination] = useState<{
+    locationName: string;
+    locationKey: string;
+  } | null>(null);
+  const add = () =>
+    toast.success("Trip Added!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   async function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     setTerm(value);
-    console.log(`Value: ${value}`)
+    console.log(`Value: ${value}`);
     if (value.length > 4) {
       const results = await getAutocompleteSuggestions(value);
       setSuggestions(results);
@@ -43,14 +62,19 @@ export function SearchForm({ onSearch }: SearchFormProps) {
       const parsedDays = parseInt(days, 10);
       console.log("Parsed days:", parsedDays); // Log parsed days value
       console.log("Selected Destination:", selectedDestination);
-      onSearch(tripName, selectedDestination.locationKey, selectedDestination.locationName, parsedDays);
+      onSearch(
+        tripName,
+        selectedDestination.locationKey,
+        selectedDestination.locationName,
+        parsedDays
+      );
     } else {
       console.log("Missing selected destination, days, or tripName.");
     }
 
-    setTerm('');
-    setTripName('');
-    setDays('');
+    setTerm("");
+    setTripName("");
+    setDays("");
     setSelectedDestination(null);
   }
 
@@ -109,7 +133,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           <option value="5">5 days</option>
         </select>
         
-        <button className="form_element" type="submit">Add New Trip</button>
+        <button onClick={add} className="form_element" type="submit">Add New Trip</button>
       </form>
     </div>
   </div>

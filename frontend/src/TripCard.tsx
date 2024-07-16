@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import Trip from "./models/trip";
 import "./TripCard.css";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 interface TripCardProps {
   trip: Trip;
   OnDelete: (id: string) => void;
@@ -9,7 +10,28 @@ interface TripCardProps {
 }
 
 export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
-
+  const notify1 = () =>
+    toast.success("Trip Deleted!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notify2 = () =>
+    toast.success("Trip Restored!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   return (
     <div className="trip_card">
       <h4>{trip.name}</h4>
@@ -63,22 +85,26 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       {trip.complete ? (
         <button
           className="trip_card_button"
-          onClick={() =>
+          onClick={() => {
             OnEdit(
               {
                 ...trip,
                 complete: false,
               },
               trip._id?.toString()!
-            )
-          }
+            );
+            notify2();
+          }}
         >
           Restore
         </button>
       ) : (
         <button
           className="trip_card_button"
-          onClick={() => OnDelete(trip._id?.toString()!)}
+          onClick={() => {
+            OnDelete(trip._id?.toString()!);
+            notify1();
+          }}
         >
           Remove
         </button>
