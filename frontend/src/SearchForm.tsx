@@ -79,6 +79,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
   }
 
   return (
+  <div className="form_section">
     <div className="form_container">
       <h2 className="form_top">Add A New Trip</h2>
       <form onSubmit={handleSubmit}>
@@ -91,7 +92,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           onChange={(e) => setTripName(e.target.value)}
           placeholder="Name Your Trip"
         />
-
+        
         <label htmlFor="destination"></label>
         <input
           id="destination"
@@ -102,22 +103,17 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           placeholder="Search Your Destination"
           required
         />
-
+        
         {suggestions.length > 0 && (
           <ul className="suggestions">
-            {suggestions.map((suggestion) => (
-              <li
-                key={suggestion.Key}
-                onClick={() =>
-                  handleSelect(suggestion.LocalizedName, suggestion.Key)
-                }
-              >
+            {suggestions.map(suggestion => (
+              <li key={suggestion.Key} onClick={() => handleSelect(suggestion.LocalizedName, suggestion.Key)}>
                 {suggestion.LocalizedName}, {suggestion.AdministrativeArea.ID}
               </li>
             ))}
           </ul>
         )}
-
+        
         <label htmlFor="days"></label>
         <select
           id="days"
@@ -136,11 +132,10 @@ export function SearchForm({ onSearch }: SearchFormProps) {
           <option value="4">4 days</option>
           <option value="5">5 days</option>
         </select>
-
-        <button className="form_element" type="submit" onClick={add}>
-          Add New Trip
-        </button>
+        
+        <button onClick={add} className="form_element" type="submit">Add New Trip</button>
       </form>
     </div>
+  </div>
   );
 }

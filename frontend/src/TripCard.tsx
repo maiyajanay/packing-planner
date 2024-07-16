@@ -40,13 +40,12 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       {Array.isArray(trip.weather) ? (
         <div>
           <div>
-            Date(s): <p>{trip.weather[0]?.Date?.substring(0, 10)}</p>
-            {trip.duration > 1 && (
-              <p>
-                {" "}
-                - {trip.weather[trip.duration - 1]?.Date?.substring(0, 10)}
-              </p>
-            )}
+            <p>
+              Date(s): {trip.weather[0]?.Date?.substring(0, 10)}
+              {trip.duration > 1 && (
+                <span> to {trip.weather[trip.duration - 1]?.Date?.substring(0, 10)}</span>
+              )}
+            </p>
           </div>
           <p>
             Max Temp During Trip:{" "}
