@@ -3,30 +3,29 @@ export interface WeatherProperty {
 }
 
 export interface Weather {
-  Date: string,
+  Date: string;
   Temperature: {
     Minimum: {
       Value: number;
       Unit: string;
-      };
+    };
     Maximum: {
       Value: number;
       Unit: string;
-      };
     };
-    Day: {
-      Icon: number;
-      IconPhrase: string;
-      HasPrecipitation: boolean;
-      PrecipitationType?: string;
-      PrecipitationIntensity?: string;
-      };
-    Night: {
-      Icon: number;
-      IconPhrase: string;
-      HasPrecipitation: boolean;
-      PrecipitationType?: string;
-      PrecipitationIntensity?: string;
-    };
+  };
+  Day: {
+    Icon: number;
+    IconPhrase: string;
+    HasPrecipitation: boolean;
+    PrecipitationType?: string;
+    PrecipitationIntensity?: string;
+  };
+  Night: {
+    Icon: number;
+    IconPhrase: string;
+    HasPrecipitation: boolean;
+    PrecipitationType?: string;
+    PrecipitationIntensity?: string;
+  };
 }
-

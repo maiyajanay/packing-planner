@@ -28,29 +28,29 @@ interface ForecastResult {
 }
 
 weatherRouter.get("/autocomplete", async (req, res) => {
-    const query = req.query.q as string;
-    const url = `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${query}`;
-    
-    try {
-        const response = await axios.get<AutocompleteResult[]>(url);
-        res.status(200).json(response.data);
-    } catch (error) {
-        console.error("Error fetching autocomplete suggestions:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
+  const query = req.query.q as string;
+  const url = `${BASE_URL}/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${query}`;
+
+  try {
+    const response = await axios.get<AutocompleteResult[]>(url);
+    res.status(200).json(response.data);
+  } catch (error) {
+    console.error("Error fetching autocomplete suggestions:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 weatherRouter.get("/forecast/1day/:locationKey", async (req, res) => {
-    const locationKey = req.params.locationKey;
-    const url = `${BASE_URL}/forecasts/v1/daily/1day/${locationKey}?apikey=${API_KEY}`;
-    
-    try {
-        const response = await axios.get<ForecastResult>(url);
-        res.status(200).json(response.data.DailyForecasts[0]);
-    } catch (error) {
-        console.error("Error fetching one-day forecast:", error);
-        res.status(500).json({ message: "Internal Server Error" });
-    }
+  const locationKey = req.params.locationKey;
+  const url = `${BASE_URL}/forecasts/v1/daily/1day/${locationKey}?apikey=${API_KEY}`;
+
+  try {
+    const response = await axios.get<ForecastResult>(url);
+    res.status(200).json(response.data.DailyForecasts[0]);
+  } catch (error) {
+    console.error("Error fetching one-day forecast:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
 weatherRouter.get("/forecast/5day/:locationKey", async (req, res) => {

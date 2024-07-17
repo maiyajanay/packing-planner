@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Trip from "./models/trip";
+
 import { Weather } from "./models/weather";
 import TripContext from "./tripContext/TripContext";
 import "./WeatherCard.css";

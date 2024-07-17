@@ -49,18 +49,18 @@ export function SearchForm({ onSearch }: SearchFormProps) {
     setTerm(locationName);
     setSelectedDestination({ locationName, locationKey });
     setSuggestions([]);
-    console.log("Days in handleSelect:", days); // Log days value
+    console.log("Days in handleSelect:", days);
   }
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     console.log("Term:", term);
     console.log("Trip Name:", tripName);
-    console.log("Days in handleSubmit:", days); // Log days value before parsing
+    console.log("Days in handleSubmit:", days);
 
     if (selectedDestination && days && tripName) {
       const parsedDays = parseInt(days, 10);
-      console.log("Parsed days:", parsedDays); // Log parsed days value
+      console.log("Parsed days:", parsedDays);
       console.log("Selected Destination:", selectedDestination);
       onSearch(
         tripName,
@@ -125,7 +125,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             className="form_element"
             value={days}
             onChange={(e) => {
-              console.log("Selected days:", e.target.value); // Log selected value
+              console.log("Selected days:", e.target.value);
               setDays(e.target.value);
             }}
             required

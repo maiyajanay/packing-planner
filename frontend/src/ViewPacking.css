@@ -52,7 +52,6 @@
 }
 #back {
   margin-right: 10px;
-  
 }
 #complete {
   margin-right: 0px;
@@ -104,8 +103,8 @@
   #weatherTitle {
     text-align: center;
   }
-  .weatherInfo{
+  .weatherInfo {
     width: fit-content;
-    font-size: large ;
+    font-size: large;
   }
 }

@@ -1,69 +1,69 @@
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Inter", sans-serif;
-    font-optical-sizing: auto;
-    text-align: center; 
-    color: #2A2829;
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  text-align: center;
+  color: #2a2829;
 }
 
 h1 {
-    font-family: "DM Serif Display", serif;
-    font-weight: 600;
-    font-size: 35px;
-    color: #2A2829;
-    margin: 5px;
-    padding: 5px;
+  font-family: "DM Serif Display", serif;
+  font-weight: 600;
+  font-size: 35px;
+  color: #2a2829;
+  margin: 5px;
+  padding: 5px;
 }
 
 h2 {
-    font-family: "DM Serif Display", serif;
-    font-weight: 600;
-    font-size: 27px;
-    color: #2A2829;
-    margin: 5px;
-    padding: 5px;
+  font-family: "DM Serif Display", serif;
+  font-weight: 600;
+  font-size: 27px;
+  color: #2a2829;
+  margin: 5px;
+  padding: 5px;
 }
 
 h4 {
-    font-family: "DM Serif Display", serif;
-    font-weight: 600;
-    font-size: 20px;
-    color: #2A2829;
-    margin: 5px;
-    padding: 5px;
+  font-family: "DM Serif Display", serif;
+  font-weight: 600;
+  font-size: 20px;
+  color: #2a2829;
+  margin: 5px;
+  padding: 5px;
 }
 
 p {
-    margin: 5px;
-    padding: 5px;
+  margin: 5px;
+  padding: 5px;
 }
 
 button {
-    margin: 5px;
-    padding: 5px;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
-    color: #F0EBE5;
-    background-color: #263A99;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  margin: 5px;
+  padding: 5px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  color: #f0ebe5;
+  background-color: #263a99;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-    color: #263A99;
-    background-color: #c4ddff;
-    cursor: pointer;
+  color: #263a99;
+  background-color: #c4ddff;
+  cursor: pointer;
 }
 
 /* Desktop styles */
 @media (min-width: 768px) {
-    * {
-        text-align: left;
-    }
+  * {
+    text-align: left;
+  }
 }

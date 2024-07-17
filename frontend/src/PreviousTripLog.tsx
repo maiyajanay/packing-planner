@@ -4,13 +4,9 @@ import { TripCard } from "./TripCard";
 import TripContext from "./tripContext/TripContext";
 import "./PreviousTripLog.css";
 
-
 interface PreviousTripLogProps {}
 export function PreviousTripLog({}: PreviousTripLogProps) {
   const { trips, handleEdit } = useContext(TripContext);
-  // function handleSendEdit(trip: Trip, id: string) {
-  //   handleEdit(trip, id);
-  // }
 
   return (
     <div>

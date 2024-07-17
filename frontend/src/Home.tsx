@@ -11,7 +11,8 @@ import { SearchForm } from "./SearchForm";
 import { TripList } from "./TripsList";
 
 export function Home() {
-  const { trips, fetchAndSetTrips, handleAdd, handleDelete } = useContext(TripContext);
+  const { trips, fetchAndSetTrips, handleAdd, handleDelete } =
+    useContext(TripContext);
   const [weather, setWeather] = useState<Weather[] | null>(null);
 
   useEffect(() => {

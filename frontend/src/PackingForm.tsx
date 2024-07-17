@@ -5,7 +5,7 @@ import "./PackingForm.css";
 import TripContext from "./tripContext/TripContext";
 import { Weather } from "./models/weather";
 import { WeatherCard } from "./WeatherCard";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 interface PackingFormProps {
   onEdit: (trip: Trip, id: string) => void;

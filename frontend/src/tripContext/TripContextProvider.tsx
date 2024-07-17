@@ -9,7 +9,7 @@ interface Props {
 
 export function TripContextProvider({ children }: Props) {
   const Icons = [
-    { id: 1, src: "/01.png"},
+    { id: 1, src: "/01.png" },
     { id: 2, src: "/02.png" },
     { id: 3, src: "/03.png" },
     { id: 4, src: "/04.png" },

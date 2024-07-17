@@ -43,7 +43,10 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
             <p>
               Date(s): {trip.weather[0]?.Date?.substring(0, 10)}
               {trip.duration > 1 && (
-                <span> to {trip.weather[trip.duration - 1]?.Date?.substring(0, 10)}</span>
+                <span>
+                  {" "}
+                  to {trip.weather[trip.duration - 1]?.Date?.substring(0, 10)}
+                </span>
               )}
             </p>
           </div>
