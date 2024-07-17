@@ -81,9 +81,9 @@ export function PackingForm({ onEdit }: PackingFormProps) {
 
         <form className="packingForm" onSubmit={handleSubmit}>
           {trip.open ? (
-            <h1>Update Packing List</h1>
+            <h1 id="updateTitle">Update Packing List</h1>
           ) : (
-            <h1>Create Packing List</h1>
+            <h1 id="createTitle">Create Packing List</h1>
           )}
 
           <label>
