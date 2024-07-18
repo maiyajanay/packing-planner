@@ -12,9 +12,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: npm ci && npm run build
-        env:
-        VITE_WEATHER_API_KEY=uCZm5tG5cLzJqkoezAcA8qK9iI7Pp7PA
-        VITE_API_URL=https://us-central1-gc-packing-planner.cloudfunctions.net/api
+        env: 
+          VITE_WEATHER_API_KEY: uCZm5tG5cLzJqkoezAcA8qK9iI7Pp7PA   
+          VITE_API_URL: https://us-central1-gc-packing-planner.cloudfunctions.net/api
 
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
