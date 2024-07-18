@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm install && npm run build --prefix C:\Users\gdrar\OneDrive\Desktop\Grand Circus\FinalProject\packing-planner\frontend\package.json
+      - run: npm install && npm run build
         env:
           VITE_WEATHER_API_KEY: uCZm5tG5cLzJqkoezAcA8qK9iI7Pp7PA
           VITE_API_URL: https://us-central1-gc-packing-planner.cloudfunctions.net/api
