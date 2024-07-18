@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Weather } from "../models/weather";
 
-const BASE_URL = "http://127.0.0.1:5001/gc-packing-planner/us-central1/api";
+const BASE_URL = "https://us-central1-gc-packing-planner.cloudfunctions.net/api";
 
 interface AutocompleteResult {
   Version: number;
