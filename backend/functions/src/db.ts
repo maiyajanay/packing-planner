@@ -1,4 +1,4 @@
-import * as functions from "firebase-functions";
+import * as functions from "firebase-functions/v1";
 import { MongoClient } from "mongodb";
 
 const uri: string = functions.config().mongodb.uri;

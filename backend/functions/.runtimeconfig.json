@@ -2,5 +2,7 @@
   "mongodb": {
     "uri": "mongodb+srv://admin:packingplanner2024@cluster0.vsyg1gr.mongodb.net/packingplanner_db?retryWrites=true&w=majority"
   },
-  "accuweatherapitoken": "uCZm5tG5cLzJqkoezAcA8qK9iI7Pp7PA"
+  "weatherapi": {
+    "key": "KGmzgbi4nyhTD0hwphqN6YSWr5AWCJV8"
+  }
 }
