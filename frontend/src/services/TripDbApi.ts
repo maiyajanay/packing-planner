@@ -1,6 +1,7 @@
 import axios from "axios";
 import Trip from "../models/trip";
 const baseUrl: string = import.meta.env.VITE_API_URL || "";
+console.log("Base URL being used:", baseUrl);
 
 export const getTrips = async (): Promise<Trip[]> => {
   return (await axios.get(`${baseUrl}/trips`)).data;

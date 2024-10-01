@@ -1,7 +1,8 @@
 import axios from "axios";
 import { Weather } from "../models/weather";
 
-const BASE_URL = "https://us-central1-gc-packing-planner.cloudfunctions.net/api";
+const baseUrl: string = import.meta.env.VITE_API_URL || "";
+console.log("Base URL being used:", baseUrl);
 
 interface AutocompleteResult {
   Version: number;
@@ -22,17 +23,17 @@ interface AutocompleteResult {
 export const getAutocompleteSuggestions = async (
   query: string
 ): Promise<AutocompleteResult[]> => {
-  return (await axios.get(`${BASE_URL}/autocomplete?q=${query}`)).data;
+  return (await axios.get(`${baseUrl}/autocomplete?q=${query}`)).data;
 };
 
 export const fetchOneDayForecastByLocation = async (
   locationKey: string
 ): Promise<Weather> => {
-  return (await axios.get(`${BASE_URL}/forecast/1day/${locationKey}`)).data;
+  return (await axios.get(`${baseUrl}/forecast/1day/${locationKey}`)).data;
 };
 
 export const fetchFiveDayForecastByLocation = async (
   locationKey: string
 ): Promise<Weather[]> => {
-  return (await axios.get(`${BASE_URL}/forecast/5day/${locationKey}`)).data;
+  return (await axios.get(`${baseUrl}/forecast/5day/${locationKey}`)).data;
 };
