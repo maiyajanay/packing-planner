@@ -12,7 +12,6 @@ export function TripList() {
   return (
     <div>
       <h2>Your Upcoming Trips</h2>
-      <h2>Checking this is working</h2>
       <div>
         {trips
           .filter((trip) => !trip.complete)
