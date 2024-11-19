@@ -64,7 +64,7 @@ export function Home() {
   };
 
   function calculatePackingList(duration: number, weather: Weather) {
-    const isCold = weather.Temperature.Maximum.Value < 60;
+    const isCold = weather.Temperature.Minimum.Value < 60;
     return {
       shirts: duration,
       pants: Math.ceil(duration / 2),
