@@ -22,10 +22,25 @@ input {
   flex-direction: row-reverse;
   justify-content: space-around;
 }
+
 .packingButton {
   width: 25%;
   margin: 10px;
+  color: #f0ebe5;
+  background-color: #263a99;
+  font-size: 14px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
 }
+
+.packingButton:hover {
+  color: #263a99;
+  background-color: #c4ddff;
+}
+
 .weatherHeader {
   display: flex;
   justify-content: center;

@@ -138,7 +138,7 @@ export function SearchForm({ onSearch }: SearchFormProps) {
             <option value="5">5 days</option>
           </select>
 
-          <button onClick={add} className="form_element" type="submit">
+          <button onClick={add} id="search_form_button" className="form_element" type="submit">
             Add New Trip
           </button>
         </form>
