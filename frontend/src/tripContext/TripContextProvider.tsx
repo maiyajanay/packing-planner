@@ -53,6 +53,7 @@ export function TripContextProvider({ children }: Props) {
   ];
 
   const [trips, setTrips] = useState<Trip[]>([]);
+  
   const fetchAndSetTrips = async () => {
     const trips = await getTrips();
     setTrips(trips);

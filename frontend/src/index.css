@@ -25,6 +25,15 @@ h2 {
   padding: 5px;
 }
 
+h3 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 600;
+  font-size: 27px;
+  color: #2a2829;
+  margin: 5px;
+  padding: 5px;
+}
+
 h4 {
   font-family: "DM Serif Display", serif;
   font-weight: 600;

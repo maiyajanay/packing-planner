@@ -1,6 +1,6 @@
 .weatherInfo {
-  border: 3px solid #000;
-  font-size: smaller;
+  margin: 10px;
   padding: 10px;
-  width: fit-content;
+  border: 1px solid #263a99;
+  border-radius: 5px;
 }
