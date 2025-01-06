@@ -55,7 +55,9 @@ export function PackingForm({ onEdit }: PackingFormProps) {
       },
       trip._id?.toString() || ""
     );
-    navigate("/");
+    // navigate("/");
+    // Maiya added the below navigation to stay on the packing page without having to navigate back to the home page
+    navigate(`/viewpacklist/${trip?._id}`);
   }
   if (trip?._id === undefined) {
     return <p> no trip found</p>;
