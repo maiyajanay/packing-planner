@@ -1,7 +1,7 @@
 import { useContext } from "react";
-
 import { Weather } from "./models/weather";
 import TripContext from "./tripContext/TripContext";
+import { format, parseISO } from 'date-fns';
 import "./WeatherCard.css";
 interface WeatherCardProps {
   forecast: Weather;
@@ -9,9 +9,19 @@ interface WeatherCardProps {
 
 export function WeatherCard({ forecast }: WeatherCardProps) {
   const { Icons } = useContext(TripContext);
+  const getFormattedDateParts = (dateString: any) => {
+    const dayOfWeek = format(parseISO(dateString), 'EEEE');
+    const monthAndDay = format(parseISO(dateString), 'MMMM d');
+    return { dayOfWeek, monthAndDay };
+  };
+
+  const { dayOfWeek, monthAndDay } = getFormattedDateParts(forecast.Date.substring(0, 10));
+
   return (
     <div className="weatherInfo">
-      <h3>{forecast.Date.substring(0, 10)}</h3>
+      {/* <h3>{forecast.Date.substring(0, 10)}</h3> Old formatting, changed 1/7 */}
+      <h3>{dayOfWeek}</h3> {/* Day of the week */}
+      <p style={{ fontFamily: '"DM Serif Display", serif', fontWeight: 'bold' }}>{monthAndDay}</p> {/* Month and Day in bold */}
       <p>
         Minimum Temp: {forecast.Temperature.Minimum.Value}°{" "}
         {forecast.Temperature.Minimum.Unit}

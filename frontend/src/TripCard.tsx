@@ -3,6 +3,7 @@ import Trip from "./models/trip";
 import "./TripCard.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { format, parseISO } from 'date-fns';
 interface TripCardProps {
   trip: Trip;
   OnDelete: (id: string) => void;
@@ -10,6 +11,38 @@ interface TripCardProps {
 }
 
 export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
+
+  function addOrdinalSuffix(dayOfMonth: number): string {
+    const j = dayOfMonth % 10,
+          k = dayOfMonth % 100;
+    if (j === 1 && k !== 11) {
+      return dayOfMonth + "st";
+    }
+    if (j === 2 && k !== 12) {
+      return dayOfMonth + "nd";
+    }
+    if (j === 3 && k !== 13) {
+      return dayOfMonth + "rd";
+    }
+    return dayOfMonth + "th";
+  }
+  
+  // Format date to include day of the week, month, and day with ordinal suffix
+  const formatDate = (dateString: string): string => {
+    const date = parseISO(dateString);
+    const dayOfWeek = format(date, 'EEEE'); // Day of the week
+    const month = format(date, 'MMMM'); // Month
+    const dayOfMonth = format(date, 'd'); // Day of the month as a number
+    const dayWithSuffix = addOrdinalSuffix(parseInt(dayOfMonth, 10));
+  
+    return `${dayOfWeek}, ${month} ${dayWithSuffix}`;
+  };
+
+  const extractYear = (dateString: string): string => {
+    const date = parseISO(dateString);
+    return format(date, 'yyyy');
+  };
+
   const notify1 = () =>
     toast.success("Trip Deleted!", {
       position: "top-right",
@@ -40,6 +73,8 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       {Array.isArray(trip.weather) ? (
         <div>
           <div>
+
+            {/* Original date code below
             <p>
               Date(s): {trip.weather[0]?.Date?.substring(0, 10)}
               {trip.duration > 1 && (
@@ -48,7 +83,18 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
                   to {trip.weather[trip.duration - 1]?.Date?.substring(0, 10)}
                 </span>
               )}
-            </p>
+            </p> */}
+
+            {/* New date code below */}
+            <p>
+              Date(s): {formatDate(trip.weather[0]?.Date.substring(0, 10))}
+              {trip.duration > 1 && trip.weather[trip.duration - 1] ? (
+                <span>
+                  {" to "}{formatDate(trip.weather[trip.duration - 1].Date.substring(0, 10))}
+                </span>
+              ) : null}
+              {`, ${extractYear(trip.weather[0].Date)}`}
+            </p>  
           </div>
           <p>
             Max Temp During Trip:{" "}
@@ -63,7 +109,7 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
         </div>
       ) : (
         <div>
-          Date(s): <p>{trip.weather?.Date?.substring(0, 10)}</p>
+          {/* Date(s): <p>{trip.weather?.Date?.substring(0, 10)}</p>  Original Date Format 
           <p>
             Max Temp During Trip: {trip.weather!.Temperature?.Maximum.Value}°
             {trip.weather!.Temperature?.Maximum.Unit}
@@ -71,7 +117,11 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
           <p>
             Min Temp During Trip: {trip.weather!.Temperature?.Minimum.Value}°
             {trip.weather!.Temperature?.Minimum.Unit}
-          </p>
+          </p> */}
+
+          Date(s): <p>{trip.weather && formatDate(trip.weather?.Date.substring(0, 10))}</p>
+          {/* Fallback content if no weather data */}
+          <p>No weather data available</p>
         </div>
       )}
 
