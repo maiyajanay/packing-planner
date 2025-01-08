@@ -1,8 +1,6 @@
 * {
   margin: 0;
-  /* margin-bottom: 5px; */
   padding: 0;
-  /* padding-bottom: 5px; */
   font-family: "Inter", sans-serif;
   font-optical-sizing: auto;
   text-align: center;
@@ -14,8 +12,9 @@ h1 {
   font-weight: 600;
   font-size: 35px;
   color: #2a2829;
-  margin: 5px;
-  padding: 5px;
+  margin: 10px;
+  /* margin: 5px; */
+  /* padding: 5px; */
 }
 
 h2 {
@@ -23,8 +22,9 @@ h2 {
   font-weight: 600;
   font-size: 27px;
   color: #2a2829;
-  margin: 5px;
-  padding: 5px;
+  margin: 5px 5px 10px 5px;
+  /* margin: 5px; */
+  /* padding: 5px; */
 }
 
 h3 {
@@ -32,8 +32,9 @@ h3 {
   font-weight: 600;
   font-size: 27px;
   color: #2a2829;
-  margin: 5px;
-  padding: 5px;
+  margin: 5px 5px 10px 5px;
+  /* margin: 5px; */
+  /* padding: 5px; */
 }
 
 h4 {
@@ -41,13 +42,14 @@ h4 {
   font-weight: 600;
   font-size: 20px;
   color: #2a2829;
-  margin: 5px;
-  padding: 5px;
+  margin: 5px 5px 10px 5px;
+  /* margin: 5px; */
+  /* padding: 5px; */
 }
 
 p {
-  margin: 5px;
-  padding: 5px;
+  margin: 5px 5px 10px 5px;
+  /* padding: 5px; */
 }
 
 button {
