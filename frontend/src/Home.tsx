@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import Trip from "./models/trip";
 import { Weather } from "./models/weather";
-import { Header } from "./Header";
 import TripContext from "./tripContext/TripContext";
 import {
   fetchOneDayForecastByLocation,
@@ -78,7 +77,6 @@ export function Home() {
 
   return (
     <>
-      <Header />
       <div>
         <SearchForm onSearch={handleSearch} />
         <TripList />

@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { Header } from "./Header";
 import { TripCard } from "./TripCard";
 import TripContext from "./tripContext/TripContext";
 import "./PreviousTripLog.css";
@@ -10,7 +9,6 @@ export function PreviousTripLog({}: PreviousTripLogProps) {
 
   return (
     <div>
-      <Header />
       <div className="past_trip_container">
         <h2>Your Past Trips</h2>
         <div>

@@ -7,12 +7,14 @@ import { PreviousTripLog } from "./PreviousTripLog";
 import TripContext from "./tripContext/TripContext";
 import "./SearchForm.css";
 import "./App.css";
+import { Header } from "./Header";
 import { ToastContainer } from "react-toastify";
 
 function App() {
   const { trips, handleEdit } = useContext(TripContext);
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
