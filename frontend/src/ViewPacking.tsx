@@ -4,6 +4,7 @@ import { useContext } from "react";
 import TripContext from "./tripContext/TripContext";
 import "./ViewPacking.css";
 import { WeatherCard } from "./WeatherCard";
+import { WeatherTile } from "./WeatherTile";
 import { Weather } from "./models/weather";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -39,7 +40,8 @@ export function ViewPacking() {
 
   return (
     <div className="viewPacking">
-      <div className="viewWeather">
+      
+      {/* <div className="viewWeather">
         <div>
           <h2 id="weatherTitle">Weather</h2>
         </div>
@@ -52,6 +54,23 @@ export function ViewPacking() {
               ))
           ) : (
             <WeatherCard key={0} forecast={trip.weather!} />
+          )}
+        </div>
+      </div> */}
+
+      <div className="viewWeatherTile">
+        <div>
+          <h2 id="weatherTileTitle">Weather</h2>
+        </div>
+        <div className="weatherTileReport">
+          {Array.isArray(trip.weather) ? (
+            trip.weather
+              ?.slice(0, trip.duration)
+              .map((forecast: Weather) => (
+                <WeatherTile key={forecast.Date} forecast={forecast} />
+              ))
+          ) : (
+            <WeatherTile key={0} forecast={trip.weather!} />
           )}
         </div>
       </div>

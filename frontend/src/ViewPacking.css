@@ -1,4 +1,4 @@
-.weatherReport {
+/* .weatherReport {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -14,7 +14,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+} */
+
+.weatherTileReport {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
+#weatherTileTitle {
+  margin-bottom: 10px;
+}
+
 .packingCheckbox {
   display: flex;
   flex-direction: row-reverse;
@@ -82,7 +92,7 @@
   .viewPacking {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     height: fit-content;
   }
   .viewList {
