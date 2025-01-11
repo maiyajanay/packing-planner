@@ -1,0 +1,8 @@
+.viewPackingTitle {
+    padding: 10px;
+    background-color: lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

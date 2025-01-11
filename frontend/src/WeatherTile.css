@@ -3,5 +3,22 @@
     padding: 10px;
     border: 1px solid #263a99;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   
+.weatherTemps {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.tempMin {
+    color: grey;
+}
+
+@media (min-width: 768px) {
+}

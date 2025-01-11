@@ -22,7 +22,7 @@ h2 {
   font-weight: 600;
   font-size: 27px;
   color: #2a2829;
-  margin: 5px 5px 10px 5px;
+  margin: 5px 5px 10px 10px;
   /* margin: 5px; */
   /* padding: 5px; */
 }
@@ -32,7 +32,7 @@ h3 {
   font-weight: 600;
   font-size: 27px;
   color: #2a2829;
-  margin: 5px 5px 10px 5px;
+  margin: 5px 5px 10px 10px;
   /* margin: 5px; */
   /* padding: 5px; */
 }
@@ -42,13 +42,13 @@ h4 {
   font-weight: 600;
   font-size: 20px;
   color: #2a2829;
-  margin: 5px 5px 10px 5px;
+  margin: 5px 5px 10px 10px;
   /* margin: 5px; */
   /* padding: 5px; */
 }
 
 p {
-  margin: 5px 5px 10px 5px;
+  margin: 5px 5px 10px 10px;
   /* padding: 5px; */
 }
 
