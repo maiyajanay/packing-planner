@@ -3,13 +3,16 @@ import Trip from "./models/trip";
 import { Weather } from "./models/weather";
 import { format, parseISO } from 'date-fns';
 import "./ViewPackingTitle.css";
+
 interface ViewPackingTitleProps {
   trip: Trip;
-  forecast: Weather;
+//   forecast: Weather;
 }
 
 // export function ViewPackingTitle({ trip, forecast }: ViewPackingTitleProps) {
-export function ViewPackingTitle() {
+// export function ViewPackingTitle() {
+export function ViewPackingTitle({ trip }: ViewPackingTitleProps) {
+
     
     //NEED TO FIGURE OUT HOW TO ADD DATES - CAN REFERENCE OTHER COMPONENTS
     // const getFormattedDateParts = (dateString: any) => {
@@ -22,10 +25,8 @@ export function ViewPackingTitle() {
 
     return (
         <div className="viewPackingTitle">
-            <h2>Trip Name Placeholder</h2>
-            <p>Trip Location & Duration Placeholder</p>
-            {/* <h1 className="name">{trip?.name}</h1>
-            <h2 className="to">{trip?.to}</h2> */}
+            <h2>{trip.name}</h2>
+            <p>{trip.to}</p>
         </div>
     );
 }

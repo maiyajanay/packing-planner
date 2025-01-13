@@ -43,7 +43,7 @@ export function ViewPacking() {
   return (
     <div>
       <div className="viewPackingTitleContainer">
-        <ViewPackingTitle />
+        <ViewPackingTitle trip={trip}/>
       </div>
       <div className="viewPacking">
           {/* <div className="viewWeather">
