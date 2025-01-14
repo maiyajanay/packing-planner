@@ -101,7 +101,7 @@ export function ViewPacking() {
             <button onClick={() => navigate("/previoustrips")}> Back </button>
           ) : (
             <div className="viewButtons">
-              <div /*className="editButton" <- temporarily removed the class from this spot*/> 
+              <div> 
                 <Link className="editButton" to={`/packing/${trip?._id}`}>Edit Packing</Link>
               </div>
               <div className="actionButtons">

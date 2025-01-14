@@ -34,7 +34,7 @@
 }
 
 .editButton {
-  /* margin: 5px;
+  margin: 5px;
   padding: 5px;
   display: inline-block;
   padding: 10px 20px;
@@ -46,23 +46,13 @@
   background-color: #263a99;
   border: none;
   border-radius: 4px;
-  cursor: pointer; */
-  width: 25%;
-  margin: 10px;
-  color: #f0ebe5;
-  background-color: #263a99;
-  font-size: 14px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
-  display: inline-block;
 }
 
 .editButton:hover {
   color: #263a99;
   background-color: #c4ddff;
-  /* cursor: pointer; */
+  cursor: pointer;
 }
 .name {
   font-size: 15px;
