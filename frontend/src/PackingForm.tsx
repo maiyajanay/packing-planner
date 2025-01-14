@@ -8,6 +8,7 @@ import { WeatherCard } from "./WeatherCard";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ViewPackingTitle } from "./ViewPackingTitle";
+import { WeatherTile } from "./WeatherTile";
 
 interface PackingFormProps {
   onEdit: (trip: Trip, id: string) => void;
@@ -65,27 +66,26 @@ export function PackingForm({ onEdit }: PackingFormProps) {
     return <p> no trip found</p>;
   } else {
     return (
-      <div className="packing">
+      <div>
         <div className="packingTitleContainer">
           <ViewPackingTitle trip={trip} />
-        </div>
+        </div>        
+        <div className="packing">
 
-        <div className="weather">
-          <div className="weatherHeader">
-            <h2>Weather</h2>
+          <div className="viewWeather">
+            <h2 id="weatherTitle">Weather</h2>
+            <div className="weatherReport">
+              {Array.isArray(trip.weather) ? (
+                trip.weather
+                  ?.slice(0, trip.duration)
+                  .map((forecast: Weather) => (
+                    <WeatherTile key={forecast.Date} forecast={forecast} />
+                  ))
+              ) : (
+                <WeatherTile key={0} forecast={trip.weather!} />
+              )}
+            </div>
           </div>
-          <div className="weatherReport">
-            {Array.isArray(trip.weather) ? (
-              trip.weather
-                ?.slice(0, trip.duration)
-                .map((forecast: Weather) => (
-                  <WeatherCard key={forecast.Date} forecast={forecast} />
-                ))
-            ) : (
-              <WeatherCard key={0} forecast={trip.weather!} />
-            )}
-          </div>
-        </div>
 
         <form className="packingForm" onSubmit={handleSubmit}>
           {trip.open ? (
@@ -94,7 +94,9 @@ export function PackingForm({ onEdit }: PackingFormProps) {
             <h2 id="createTitle">Create Packing List</h2>
           )}
 
-          <label>
+          {/* read only fields */}
+
+          {/* <label>
             Name:
             <input type="text" value={trip.name} readOnly />
           </label>
@@ -105,7 +107,7 @@ export function PackingForm({ onEdit }: PackingFormProps) {
           <label>
             Duration:
             <input type="number" value={trip.duration} readOnly />
-          </label>
+          </label> */}
 
           <label>
             Shorts:
@@ -171,6 +173,7 @@ export function PackingForm({ onEdit }: PackingFormProps) {
           </button>
         </form>
       </div>
+    </div>
     );
   }
 }

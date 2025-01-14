@@ -46,27 +46,9 @@ export function ViewPacking() {
         <ViewPackingTitle trip={trip}/>
       </div>
       <div className="viewPacking">
-          {/* <div className="viewWeather">
-          <div>
-            <h2 id="weatherTitle">Weather</h2>
-          </div>
-          <div className="weatherReport">
-            {Array.isArray(trip.weather) ? (
-              trip.weather
-                ?.slice(0, trip.duration)
-                .map((forecast: Weather) => (
-                  <WeatherCard key={forecast.Date} forecast={forecast} />
-                ))
-            ) : (
-              <WeatherCard key={0} forecast={trip.weather!} />
-            )}
-          </div>
-        </div> */}
 
         <div className="viewWeather">
-          <div>
-            <h2 id="weatherTitle">Weather</h2>
-          </div>
+          <h2 id="weatherTitle">Weather</h2>
           <div className="weatherReport">
             {Array.isArray(trip.weather) ? (
               trip.weather
