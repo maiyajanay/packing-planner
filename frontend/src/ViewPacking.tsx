@@ -85,7 +85,7 @@ export function ViewPacking() {
           <h2 className="to">{trip?.to}</h2> */}
 
           <div className="checklist">
-            <h3>Packing List</h3>
+            <h2>Packing List</h2>
             <div className="packingCheckbox">
               <label>Shorts: {trip?.shorts}</label>
               <input type="checkbox" readOnly checked={false} />

@@ -1,13 +1,14 @@
 .packingForm {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
+  /* justify-content: space-around;
   margin-top: 10px;
-
   min-height: 40vh;
-  width: 40%;
+  width: 40%; */
 }
+
 .weather {
   width: 50%;
 }

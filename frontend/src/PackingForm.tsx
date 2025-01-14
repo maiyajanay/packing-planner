@@ -7,6 +7,8 @@ import { Weather } from "./models/weather";
 import { WeatherCard } from "./WeatherCard";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ViewPackingTitle } from "./ViewPackingTitle";
+
 interface PackingFormProps {
   onEdit: (trip: Trip, id: string) => void;
 }
@@ -64,6 +66,10 @@ export function PackingForm({ onEdit }: PackingFormProps) {
   } else {
     return (
       <div className="packing">
+        <div className="packingTitleContainer">
+          <ViewPackingTitle trip={trip} />
+        </div>
+
         <div className="weather">
           <div className="weatherHeader">
             <h2>Weather</h2>
@@ -83,9 +89,9 @@ export function PackingForm({ onEdit }: PackingFormProps) {
 
         <form className="packingForm" onSubmit={handleSubmit}>
           {trip.open ? (
-            <h1 id="updateTitle">Update Packing List</h1>
+            <h2 id="updateTitle">Update Packing List</h2>
           ) : (
-            <h1 id="createTitle">Create Packing List</h1>
+            <h2 id="createTitle">Create Packing List</h2>
           )}
 
           <label>

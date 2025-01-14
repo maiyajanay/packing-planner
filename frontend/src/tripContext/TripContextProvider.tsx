@@ -57,6 +57,7 @@ export function TripContextProvider({ children }: Props) {
   const fetchAndSetTrips = async () => {
     const trips = await getTrips();
     setTrips(trips);
+    console.log(trips);
   };
 
   const handleAdd = async (trip: Trip) => {
