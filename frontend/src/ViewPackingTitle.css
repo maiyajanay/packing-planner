@@ -1,4 +1,6 @@
 .viewPackingTitle {
+    border-top: 1px solid #263a99;
+    border-bottom: 1px solid #263a99;
     padding: 10px;
     background-color: #c4ddff;
     display: flex;
