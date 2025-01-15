@@ -67,10 +67,10 @@ export function PackingForm({ onEdit }: PackingFormProps) {
   } else {
     return (
       <div>
-        <div className="packingTitleContainer">
+        <div className="viewPackingTitleContainer">
           <ViewPackingTitle trip={trip} />
         </div>        
-        <div className="packing">
+        <div className="packingFormContainer">
 
           <div className="viewWeather">
             <h2 id="weatherTitle">Weather</h2>

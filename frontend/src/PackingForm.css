@@ -1,3 +1,9 @@
+.packingFormContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+}
+
 .packingForm {
   display: flex;
   flex-direction: column;
@@ -16,11 +22,6 @@ input {
   border: 1px solid #ccc;
 }
 
-.packing {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-around;
-}
 
 .packingButton {
   margin: 5px;
@@ -49,8 +50,7 @@ input {
   justify-content: center;
 }
 @media screen and (max-width: 768px) {
-  .packing {
-    display: flex;
+  .packingFormContainer {
     flex-direction: column;
     align-items: center;
   }

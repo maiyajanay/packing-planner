@@ -1,7 +1,8 @@
-.viewPacking {
+.packingListContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -12,24 +13,28 @@
 }
 
 .packingCheckbox {
+  margin: 5px;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-evenly;
+  /* flex-direction: row-reverse; */
+  /* justify-content: space-evenly; */
   align-items: center;
+  justify-content: center;
 }
 
-.viewList {
+/* .viewList {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
   margin-bottom: 20px;
-}
+} */
 
 .checklist {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
@@ -76,7 +81,7 @@
   margin-left: 10px;
 }
 @media (min-width: 768px) {
-  .viewPacking {
+  .packingListContainer {
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-start;
@@ -93,8 +98,6 @@
   }
 
   .viewList {
-    height: 50%;
-    width: 50%;
   }
   .name {
     font-size: 50px;
@@ -110,9 +113,7 @@
     width: 75px;
     height: 45px;
   }
-  .checklist {
-    font-size: large;
-  }
+  
   .viewButtons {
     display: flex;
     flex-direction: column;

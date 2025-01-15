@@ -45,7 +45,7 @@ export function ViewPacking() {
       <div className="viewPackingTitleContainer">
         <ViewPackingTitle trip={trip}/>
       </div>
-      <div className="viewPacking">
+      <div className="packingListContainer">
 
         <div className="viewWeather">
           <h2 id="weatherTitle">Weather</h2>
@@ -63,38 +63,35 @@ export function ViewPacking() {
         </div>
 
         <div className="viewList">
-          {/* <h1 className="name">{trip?.name}</h1>
-          <h2 className="to">{trip?.to}</h2> */}
-
           <div className="checklist">
             <h2>Packing List</h2>
             <div className="packingCheckbox">
+              <input type="checkbox" readOnly checked={false} />
               <label>Shorts: {trip?.shorts}</label>
-              <input type="checkbox" readOnly checked={false} />
             </div>
             <div className="packingCheckbox">
+            <input type="checkbox" readOnly checked={false} />
               <label>Pants: {trip?.pants}</label>
-              <input type="checkbox" readOnly checked={false} />
             </div>
             <div className="packingCheckbox">
+              <input type="checkbox" readOnly checked={false} />
               <label>Shirts: {trip?.shirts}</label>
-              <input type="checkbox" readOnly checked={false} />
             </div>
             <div className="packingCheckbox">
-              <label>Socks: {trip?.socks}</label>
-              <input type="checkbox" readOnly checked={false} />
+              <input type="checkbox" readOnly checked={false} />  
+              <label>Socks: {trip?.socks}</label>              
             </div>
             <div className="packingCheckbox">
-              <label>Underwear: {trip?.underwear}</label>
               <input type="checkbox" readOnly checked={false} />
+              <label>Underwear: {trip?.underwear}</label>              
+            </div> 
+            <div className="packingCheckbox">
+              <input type="checkbox" readOnly checked={false} />
+              <label>Sweatshirt: {trip?.sweatshirt}</label>              
             </div>
             <div className="packingCheckbox">
-              <label>Sweatshirt: {trip?.sweatshirt}</label>
               <input type="checkbox" readOnly checked={false} />
-            </div>
-            <div className="packingCheckbox">
-              <label>Jacket: {trip?.jacket}</label>
-              <input type="checkbox" readOnly checked={false} />
+              <label>Jacket: {trip?.jacket}</label>              
             </div>
           </div>
           {trip?.complete ? (
@@ -115,6 +112,7 @@ export function ViewPacking() {
             </div>
           )}
         </div>
+      
       </div>
     </div>
   );
