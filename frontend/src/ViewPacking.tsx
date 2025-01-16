@@ -94,21 +94,18 @@ export function ViewPacking() {
               <label>Jacket: {trip?.jacket}</label>              
             </div>
           </div>
+          
           {trip?.complete ? (
             <button onClick={() => navigate("/previoustrips")}> Back </button>
           ) : (
-            <div className="viewButtons">
-              <div> 
-                <Link className="editButton" to={`/packing/${trip?._id}`}>Edit Packing</Link>
-              </div>
-              <div className="actionButtons">
-                <button id="back" onClick={() => navigate("/")}>
-                  Back
-                </button>
-                <button id="complete" onClick={handleComplete}>
-                  Trip Completed
-                </button>
-              </div>
+            <div className="actionButtons">
+              <Link className="editButton" to={`/packing/${trip?._id}`}>Edit Packing</Link>
+              <button id="back" onClick={() => navigate("/")}>
+                Back
+              </button>
+              <button id="complete" onClick={handleComplete}>
+                Trip Completed
+              </button>
             </div>
           )}
         </div>

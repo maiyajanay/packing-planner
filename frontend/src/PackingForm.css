@@ -1,18 +1,26 @@
 .packingFormContainer {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   justify-content: space-around;
 }
 
 .packingForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  /* justify-content: space-around;
-  margin-top: 10px;
-  min-height: 40vh;
-  width: 40%; */
+  margin-bottom: 5px;
+}
+
+.weatherReport {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.viewWeather {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 input {
@@ -22,6 +30,13 @@ input {
   border: 1px solid #ccc;
 }
 
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+}
 
 .packingButton {
   margin: 5px;
@@ -45,34 +60,32 @@ input {
   cursor: pointer;
 }
 
-.weatherHeader {
-  display: flex;
-  justify-content: center;
-}
-@media screen and (max-width: 768px) {
+@media (min-width: 768px) {
   .packingFormContainer {
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row-reverse;    
   }
 
-  .weather {
-    display: flex;
-    flex-direction: column;
-  }
-
-  #updateTitle {
+  .packingListTitle {
     text-wrap: nowrap;
+    margin-left: 0;
+    padding-left: 0;
   }
+
   .packingForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    width: 100%;
+    align-items: flex-start;    
   }
+
+  .actionButtons {
+    flex-direction: row;    
+  }
+
   .packingButton {
+    width: fit-content;
     display: flex;
     justify-content: center;
-    width: fit-content;
+  }
+
+  #save {
+    margin-left: 0;
   }
 }

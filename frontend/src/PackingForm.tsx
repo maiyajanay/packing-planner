@@ -87,91 +87,80 @@ export function PackingForm({ onEdit }: PackingFormProps) {
             </div>
           </div>
 
-        <form className="packingForm" onSubmit={handleSubmit}>
-          {trip.open ? (
-            <h2 id="updateTitle">Update Packing List</h2>
-          ) : (
-            <h2 id="createTitle">Create Packing List</h2>
-          )}
+          <div className="viewForm">
+            <form className="packingForm" onSubmit={handleSubmit}>
+              {trip.open ? (
+                  <h2 id="updateTitle">Update Packing List</h2>
+                ) : (
+                  <h2 id="createTitle">Create Packing List</h2>
+                )}
 
-          {/* read only fields */}
-
-          {/* <label>
-            Name:
-            <input type="text" value={trip.name} readOnly />
-          </label>
-          <label>
-            To:
-            <input type="text" value={trip.to} readOnly />
-          </label>
-          <label>
-            Duration:
-            <input type="number" value={trip.duration} readOnly />
-          </label> */}
-
-          <label>
-            Shorts:
-            <input
-              type="number"
-              value={shorts}
-              onChange={(e) => setShorts(parseInt(e.target.value))}
-            />
-          </label>
-          <label>
-            Pants:
-            <input
-              type="number"
-              value={pants || 0}
-              onChange={(e) => setPants(parseInt(e.target.value))}
-            />
-          </label>
-          <label>
-            Shirts:
-            <input
-              type="number"
-              value={shirts}
-              onChange={(e) => setShirts(parseInt(e.target.value))}
-            />
-          </label>
-          <label>
-            Socks:
-            <input
-              type="number"
-              value={socks}
-              onChange={(e) => setSocks(parseInt(e.target.value))}
-            />
-          </label>
-          <label>
-            Underwear:
-            <input
-              type="number"
-              value={underwear}
-              onChange={(e) => setUnderwear(parseInt(e.target.value))}
-            />
-          </label>
-          <label>
-            Sweatshirt:
-            <input
-              type="number"
-              value={sweatshirt}
-              onChange={(e) => setSweatshirt(parseInt(e.target.value))}
-            />
-          </label>
-          <label>
-            Jacket:
-            <input
-              type="number"
-              value={jacket}
-              onChange={(e) => setJacket(parseInt(e.target.value))}
-            />
-          </label>
-          <button className="packingButton" type="submit" onClick={notify}>
-            Save Trip
-          </button>
-          <button className="packingButton" onClick={() => navigate("/")}>
-            Cancel
-          </button>
-        </form>
+              <label>
+                Shorts:
+                <input
+                  type="number"
+                  value={shorts}
+                  onChange={(e) => setShorts(parseInt(e.target.value))}
+                />
+              </label>    
+              <label>
+                Pants:
+                <input
+                  type="number"
+                  value={pants || 0}
+                  onChange={(e) => setPants(parseInt(e.target.value))}
+                />
+              </label>
+              <label>
+                Shirts:
+                <input
+                  type="number"
+                  value={shirts}
+                  onChange={(e) => setShirts(parseInt(e.target.value))}
+                />
+              </label>
+              <label>
+                Socks:
+                <input
+                  type="number"
+                  value={socks}
+                  onChange={(e) => setSocks(parseInt(e.target.value))}
+                />
+              </label>
+              <label>
+                Underwear:
+                <input
+                  type="number"
+                  value={underwear}
+                  onChange={(e) => setUnderwear(parseInt(e.target.value))}
+                />
+              </label>
+              <label>
+                Sweatshirt:
+                <input
+                  type="number"
+                  value={sweatshirt}
+                  onChange={(e) => setSweatshirt(parseInt(e.target.value))}
+                />
+              </label>
+              <label>
+                Jacket:
+                <input
+                  type="number"
+                  value={jacket}
+                  onChange={(e) => setJacket(parseInt(e.target.value))}
+                />
+              </label>
+              <div className="actionButtons">
+                <button className="packingButton" id="save" type="submit" onClick={notify}>
+                  Save Trip
+                </button>
+                <button className="packingButton" onClick={() => navigate("/")}>
+                  Cancel
+                </button>            
+              </div>
+            </form>
+          </div>
       </div>
     </div>
     );

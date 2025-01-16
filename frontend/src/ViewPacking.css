@@ -12,30 +12,39 @@
   justify-content: center;
 }
 
-.packingCheckbox {
-  margin: 5px;
-  display: flex;
-  /* flex-direction: row-reverse; */
-  /* justify-content: space-evenly; */
-  align-items: center;
-  justify-content: center;
-}
-
-/* .viewList {
+.viewWeather {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 20px;
-} */
+}
+
+.dayIcon {
+  width: 50px;
+  height: 35px;
+}
+
+.nightIcon {
+  width: 50px;
+  height: 35px;
+}
+
+.packingCheckbox {
+  margin: 5px;
+}
 
 .checklist {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  width: 100%;
 }
 
 .editButton {
@@ -59,76 +68,29 @@
   background-color: #c4ddff;
   cursor: pointer;
 }
-.name {
-  font-size: 15px;
-}
-.to {
-  font-size: 12px;
-}
-.dayIcon {
-  width: 50px;
-  height: 35px;
-}
-.nightIcon {
-  width: 50px;
-  height: 35px;
-}
-#back {
-  margin-right: 10px;
-}
-#complete {
-  margin-right: 0px;
-  margin-left: 10px;
-}
+
+
 @media (min-width: 768px) {
   .packingListContainer {
-    display: flex;
     flex-direction: row-reverse;
     align-items: flex-start;
-
-    /* justify-content: space-between; */
-    /* height: fit-content; */
   }
 
-  /* .viewWeather { //THIS MAKES THE WEATHER SQUARES STRETCH OUT
-    width: 70%;
-  } */
-  .weatherReport {
-    flex-direction: column;
-  }
-
-  .viewList {
-  }
-  .name {
-    font-size: 50px;
-  }
-  .to {
-    font-size: 40px;
-  }
   .dayIcon {
     width: 75px;
     height: 45px;
   }
+
   .nightIcon {
     width: 75px;
     height: 45px;
   }
-  
-  .viewButtons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
+  .checklist {
+    align-items: flex-start;
   }
+
   .actionButtons {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-content: space-evenly;
-  }
-  #weatherTitle {
-    text-align: center;
-  }
-  .weatherInfo {
-    width: fit-content;
+    flex-direction: row;    
   }
 }
