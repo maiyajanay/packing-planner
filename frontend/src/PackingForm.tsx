@@ -94,7 +94,6 @@ export function PackingForm({ onEdit }: PackingFormProps) {
                 ) : (
                   <h2 id="createTitle">Create Packing List</h2>
                 )}
-
               <label>
                 Shorts:
                 <input

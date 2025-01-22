@@ -25,7 +25,7 @@ export function ViewPackingTitle({ trip }: ViewPackingTitleProps) {
 
     return (
         <div className="viewPackingTitle">
-            <h2 className="trip-name">{trip.name}</h2>
+            <h1 className="trip-name">{trip.name}</h1>
             <h3>Trip To {trip.to}</h3>
             <p>Duration: {trip.duration} days</p>
         </div>
