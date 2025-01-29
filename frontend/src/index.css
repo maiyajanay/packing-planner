@@ -43,6 +43,10 @@ p {
   margin: 5px 5px 10px 10px;
 }
 
+.sort_controls {
+margin-left: 10px;
+}
+
 button {
   margin: 5px;
   padding: 5px;
