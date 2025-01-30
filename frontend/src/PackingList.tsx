@@ -1,5 +1,5 @@
-import { Link, useContext, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import TripContext from "./tripContext/TripContext";
 import Trip from "./models/trip";
 import "./PackingList.css";
@@ -50,18 +50,18 @@ export function PackingList({ onEdit }: PackingListProps) {
             theme: "light",
         });
     
-        function handleComplete() {
-            handleEdit(
-                {
-                    ...trip,
-                    complete: true,
-                },
-                trip?._id?.toString() || ""
-                );
-                fetchAndSetTrips();
-                complete();
-                navigate("/"); //CHANGE THIS: Navigates back to the home page after a trip is completed
-            }
+    function handleComplete() {
+        handleEdit(
+            {
+                ...trip,
+                complete: true,
+            },
+            trip?._id?.toString() || ""
+            );
+            fetchAndSetTrips();
+            complete();
+            navigate("/"); //CHANGE THIS: Navigates back to the home page after a trip is completed
+        }
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -83,7 +83,6 @@ export function PackingList({ onEdit }: PackingListProps) {
         },
         trip._id?.toString() || ""
         );
-        // Maiya added the below navigation to stay on the packing page without having to navigate back to the home page
         navigate(`/viewpacklist/${trip?._id}`);
     }
 
@@ -96,175 +95,149 @@ if (trip?._id === undefined) {
         <div className="viewPackingTitleContainer">
         <ViewPackingTitle trip={trip} />
         </div>        
-        <div className="packingFormContainer">
+        <div className="packingListContainer">
 
-        <div className="viewWeather">
-            <h2 id="weatherTitle">Weather</h2>
-            <div className="weatherReport">
-            {Array.isArray(trip.weather) ? (
-                trip.weather
-                ?.slice(0, trip.duration)
-                .map((forecast: Weather) => (
-                    <WeatherTile key={forecast.Date} forecast={forecast} />
-                ))
-            ) : (
-                <WeatherTile key={0} forecast={trip.weather!} />
-            )}
-            </div>
-        </div>
-
-        <div className="viewForm">
-            <form className="packingForm" onSubmit={handleSubmit}>
-            {trip.open ? (
-                <h2 id="updateTitle">Update Packing List</h2>
+            <div className="viewWeather">
+                <h2 id="weatherTitle">Weather</h2>
+                <div className="weatherReport">
+                {Array.isArray(trip.weather) ? (
+                    trip.weather
+                    ?.slice(0, trip.duration)
+                    .map((forecast: Weather) => (
+                        <WeatherTile key={forecast.Date} forecast={forecast} />
+                    ))
                 ) : (
-                <h2 id="createTitle">Create Packing List</h2>
+                    <WeatherTile key={0} forecast={trip.weather!} />
                 )}
-            <label>
-                Shorts:
-                <input
-                type="number"
-                value={shorts}
-                onChange={(e) => setShorts(parseInt(e.target.value))}
-                />
-            </label>    
-            <label>
-                Pants:
-                <input
-                type="number"
-                value={pants || 0}
-                onChange={(e) => setPants(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Shirts:
-                <input
-                type="number"
-                value={shirts}
-                onChange={(e) => setShirts(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Socks:
-                <input
-                type="number"
-                value={socks}
-                onChange={(e) => setSocks(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Underwear:
-                <input
-                type="number"
-                value={underwear}
-                onChange={(e) => setUnderwear(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Sweatshirt:
-                <input
-                type="number"
-                value={sweatshirt}
-                onChange={(e) => setSweatshirt(parseInt(e.target.value))}
-                />
-            </label>
-            <label>
-                Jacket:
-                <input
-                type="number"
-                value={jacket}
-                onChange={(e) => setJacket(parseInt(e.target.value))}
-                />
-            </label>
-            <div className="actionButtons">
-                <button className="packingButton" id="save" type="submit" onClick={notify}>
-                Save Trip
-                </button>
-                <button className="packingButton" onClick={() => navigate("/")}>
-                Cancel
-                </button>            
+                </div>
             </div>
-            </form>
+        
+            {trip.open ? (
+                <div className="viewForm">
+                    <form className="packingForm" onSubmit={handleSubmit}>
+                    {trip.open ? (
+                        <h2 id="updateTitle">Update Packing List</h2>
+                        ) : (
+                        <h2 id="createTitle">Create Packing List</h2>
+                        )}
+                    <label>
+                        Shorts:
+                        <input
+                        type="number"
+                        value={shorts}
+                        onChange={(e) => setShorts(parseInt(e.target.value))}
+                        />
+                    </label>    
+                    <label>
+                        Pants:
+                        <input
+                        type="number"
+                        value={pants || 0}
+                        onChange={(e) => setPants(parseInt(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Shirts:
+                        <input
+                        type="number"
+                        value={shirts}
+                        onChange={(e) => setShirts(parseInt(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Socks:
+                        <input
+                        type="number"
+                        value={socks}
+                        onChange={(e) => setSocks(parseInt(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Underwear:
+                        <input
+                        type="number"
+                        value={underwear}
+                        onChange={(e) => setUnderwear(parseInt(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Sweatshirt:
+                        <input
+                        type="number"
+                        value={sweatshirt}
+                        onChange={(e) => setSweatshirt(parseInt(e.target.value))}
+                        />
+                    </label>
+                    <label>
+                        Jacket:
+                        <input
+                        type="number"
+                        value={jacket}
+                        onChange={(e) => setJacket(parseInt(e.target.value))}
+                        />
+                    </label>
+                    <div className="actionButtons">
+                        <button className="packingButton" id="save" type="submit" onClick={notify}>
+                        Save Trip
+                        </button>
+                        <button className="packingButton" onClick={() => navigate("/")}>
+                        Cancel
+                        </button>            
+                    </div>
+                    </form>
+                </div>
+            ) : (
+            <div className="viewList">
+            <div className="checklist">
+                <h2>Packing List</h2>
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />
+                    <label>Shorts: {trip?.shorts}</label>
+                </div>
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />
+                    <label>Pants: {trip?.pants}</label>
+                </div>
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />
+                    <label>Shirts: {trip?.shirts}</label>
+                </div>
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />  
+                    <label>Socks: {trip?.socks}</label>              
+                </div>
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />
+                    <label>Underwear: {trip?.underwear}</label>              
+                </div> 
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />
+                    <label>Sweatshirt: {trip?.sweatshirt}</label>              
+                </div>
+                <div className="packingCheckbox">
+                    <input type="checkbox" readOnly checked={false} />
+                <   label>Jacket: {trip?.jacket}</label>              
+                </div>
+            </div>
+        
+        
+            {trip?.complete ? (
+                <button onClick={() => navigate("/previoustrips")}> Back </button>
+                ) : (
+                    <div className="actionButtons">
+                    <Link className="editButton" to={`/packing/${trip?._id}`}>Edit Packing</Link>
+                    <button id="back" onClick={() => navigate("/")}>
+                        Back
+                    </button>
+                    <button id="complete" onClick={handleComplete}>
+                        Trip Completed
+                    </button>
+                    </div>
+                )}
+                </div>
+            )}
         </div>
-    </div>
     </div>
     );
 }
-}
-
-
-
-return (
-    <div>
-    <div className="viewPackingTitleContainer">
-        <ViewPackingTitle trip={trip}/>
-    </div>
-    <div className="packingListContainer">
-
-        <div className="viewWeather">
-        <h2 id="weatherTitle">Weather</h2>
-        <div className="weatherReport">
-            {Array.isArray(trip.weather) ? (
-            trip.weather
-                ?.slice(0, trip.duration)
-                .map((forecast: Weather) => (
-                <WeatherTile key={forecast.Date} forecast={forecast} />
-                ))
-            ) : (
-            <WeatherTile key={0} forecast={trip.weather!} />
-            )}
-        </div>
-        </div>
-
-        <div className="viewList">
-        <div className="checklist">
-            <h2>Packing List</h2>
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
-            <label>Shorts: {trip?.shorts}</label>
-            </div>
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
-            <label>Pants: {trip?.pants}</label>
-            </div>
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
-            <label>Shirts: {trip?.shirts}</label>
-            </div>
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />  
-            <label>Socks: {trip?.socks}</label>              
-            </div>
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
-            <label>Underwear: {trip?.underwear}</label>              
-            </div> 
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
-            <label>Sweatshirt: {trip?.sweatshirt}</label>              
-            </div>
-            <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
-            <label>Jacket: {trip?.jacket}</label>              
-            </div>
-        </div>
-        
-        {trip?.complete ? (
-            <button onClick={() => navigate("/previoustrips")}> Back </button>
-        ) : (
-            <div className="actionButtons">
-            <Link className="editButton" to={`/packing/${trip?._id}`}>Edit Packing</Link>
-            <button id="back" onClick={() => navigate("/")}>
-                Back
-            </button>
-            <button id="complete" onClick={handleComplete}>
-                Trip Completed
-            </button>
-            </div>
-        )}
-        </div>
-    
-    </div>
-    </div>
-);
 }
