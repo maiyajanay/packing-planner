@@ -37,6 +37,7 @@ Packing Planner is a web application designed to help users plan what to pack an
 
 ## Getting Started
 
+To view the deployed site, click [here](https://gc-packing-planner.web.app/).
 Follow these instructions to get the project up and running on your local machine.
 
 ### Prerequisites
