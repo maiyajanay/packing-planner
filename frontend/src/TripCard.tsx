@@ -43,6 +43,22 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
     return format(date, 'yyyy');
   };
 
+  const handleRestore = () => {
+    OnEdit(
+      {
+        ...trip,
+        complete: false,
+      },
+      trip._id?.toString()!
+    );
+    notify2();
+  };
+  
+  const handleRemove = () => {
+    OnDelete(trip._id?.toString()!);
+    notify1();
+  };
+
   const notify1 = () =>
     toast.success("Trip Deleted!", {
       position: "top-right",
@@ -65,7 +81,8 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       progress: undefined,
       theme: "light",
     });
-  return (
+  
+    return (
     <div className="trip_card">
       <h4>{trip.name}</h4>
       <p>{trip.to}</p>
@@ -124,8 +141,20 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
           <p>No weather data available</p>
         </div>
       )}
-
-      {trip.open === false && (
+      {/* // If trip is open, display "View Packing List" button, else display "Start Packing" button */}
+      <Link
+        className="trip_card_button"
+        to={trip.open ? `viewpacklist/${trip._id}` : `packing/${trip._id}`}
+      >
+        {trip.open ? "View Packing List" : "Start Packing"}
+      </Link>
+      <button
+        className="trip_card_button"
+        onClick={trip.complete ? handleRestore : handleRemove}
+        >
+        {trip.complete ? "Restore" : "Remove"}
+      </button>
+      {/* {trip.open === false && (
         <Link className="trip_card_button" to={`packing/${trip._id}`}>
           Start Packing
         </Link>
@@ -161,7 +190,7 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
         >
           Remove
         </button>
-      )}
+      )} */}
     </div>
   );
 }
