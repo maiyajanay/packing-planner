@@ -59,6 +59,17 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
     notify1();
   };
 
+  const handleComplete = () => {
+    OnEdit(
+      {
+        ...trip,
+        complete: true,
+      },
+      trip._id?.toString()!
+    );
+    notify3();
+  };
+
   const notify1 = () =>
     toast.success("Trip Deleted!", {
       position: "top-right",
@@ -81,7 +92,18 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
       progress: undefined,
       theme: "light",
     });
-  
+    const notify3 = () =>
+      toast.success("Trip Completed!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
     return (
     <div className="trip_card">
       <h4>{trip.name}</h4>
@@ -154,43 +176,14 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
         >
         {trip.complete ? "Restore" : "Remove"}
       </button>
-      {/* {trip.open === false && (
-        <Link className="trip_card_button" to={`packing/${trip._id}`}>
-          Start Packing
-        </Link>
-      )}
-      {trip.open === true && (
-        <Link className="trip_card_button" to={`viewpacklist/${trip?._id}`}>
-          View Packing List
-        </Link>
-      )}
-      {trip.complete ? (
+      {!trip.complete && (
         <button
           className="trip_card_button"
-          onClick={() => {
-            OnEdit(
-              {
-                ...trip,
-                complete: false,
-              },
-              trip._id?.toString()!
-            );
-            notify2();
-          }}
+          onClick={handleComplete}
         >
-          Restore
+          Trip Completed
         </button>
-      ) : (
-        <button
-          className="trip_card_button"
-          onClick={() => {
-            OnDelete(trip._id?.toString()!);
-            notify1();
-          }}
-        >
-          Remove
-        </button>
-      )} */}
+      )}
     </div>
   );
 }
