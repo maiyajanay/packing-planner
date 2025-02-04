@@ -1,6 +1,6 @@
 # Packing Planner
 
-Packing Planner is a web application designed to help users plan what to pack and organize their trips. It allows users to create trips, manage packing lists, and view weather forecasts for their destinations.
+Packing Planner is a web application designed to help users plan what to pack and organize their trips. It allows users to create trips, manage packing lists, and view weather forecasts for their destinations. This project was built for a bootcamp capstone project, and has been refined and improved since then.
 
 ## Features
 
