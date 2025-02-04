@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import TripContext from "./tripContext/TripContext";
 import { Link } from "react-router-dom";
 import Trip from "./models/trip";
 import "./TripCard.css";
@@ -11,7 +13,7 @@ interface TripCardProps {
 }
 
 export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
-
+  const { fetchAndSetTrips, handleEdit } = useContext(TripContext);
   function addOrdinalSuffix(dayOfMonth: number): string {
     const j = dayOfMonth % 10,
           k = dayOfMonth % 100;
@@ -60,13 +62,14 @@ export function TripCard({ trip, OnDelete, OnEdit }: TripCardProps) {
   };
 
   const handleComplete = () => {
-    OnEdit(
+    handleEdit(
       {
-        ...trip,
-        complete: true,
+          ...trip,
+          complete: true,
       },
-      trip._id?.toString()!
-    );
+      trip?._id?.toString() || ""
+      );
+    fetchAndSetTrips();
     notify3();
   };
 
