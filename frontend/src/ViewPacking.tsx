@@ -37,7 +37,7 @@ export function ViewPacking() {
     );
     fetchAndSetTrips();
     complete();
-    navigate("/");
+    // navigate("/");
   }
 
   return (

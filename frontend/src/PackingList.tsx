@@ -60,7 +60,7 @@ export function PackingList({ onEdit }: PackingListProps) {
             );
             fetchAndSetTrips();
             complete();
-            navigate("/"); //CHANGE THIS: Navigates back to the home page after a trip is completed
+            // navigate("/"); removed this line so that the user stays on the page after completing the trip
         }
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
