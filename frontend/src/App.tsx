@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Home } from "./Home";
 import { PackingForm } from "./PackingForm";
 import { ViewPacking } from "./ViewPacking";
+import { PackingList } from "./PackingList";
 import { PreviousTripLog } from "./PreviousTripLog";
 import TripContext from "./tripContext/TripContext";
 import "./SearchForm.css";
@@ -25,6 +26,11 @@ function App() {
         <Route
           path="/previoustrips/viewpacklist/:id"
           element={<ViewPacking />}
+        />
+        {/* Added the below route to begin transition to the new packing list page */}
+        <Route
+          path="/packinglist/:id"
+          element={<PackingList onEdit={handleEdit} />}
         />
 
         <Route path="/previoustrips" element={<PreviousTripLog />} />
