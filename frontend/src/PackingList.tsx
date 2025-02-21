@@ -260,4 +260,4 @@ export function PackingList({ onEdit }: PackingListProps) {
     </div>
     );
 }
-}
+

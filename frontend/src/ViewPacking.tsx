@@ -37,16 +37,15 @@ export function ViewPacking() {
     );
     fetchAndSetTrips();
     complete();
-    // navigate("/");
+    // navigate("/"); removed this line so that the user stays on the page after completing the trip
   }
 
   return (
     <div>
       <div className="viewPackingTitleContainer">
-        <ViewPackingTitle trip={trip}/>
+        <ViewPackingTitle trip={trip} />
       </div>
       <div className="packingListContainer">
-
         <div className="viewWeather">
           <h2 id="weatherTitle">Weather</h2>
           <div className="weatherReport">
@@ -70,7 +69,7 @@ export function ViewPacking() {
               <label>Shorts: {trip?.shorts}</label>
             </div>
             <div className="packingCheckbox">
-            <input type="checkbox" readOnly checked={false} />
+              <input type="checkbox" readOnly checked={false} />
               <label>Pants: {trip?.pants}</label>
             </div>
             <div className="packingCheckbox">
@@ -78,28 +77,30 @@ export function ViewPacking() {
               <label>Shirts: {trip?.shirts}</label>
             </div>
             <div className="packingCheckbox">
-              <input type="checkbox" readOnly checked={false} />  
-              <label>Socks: {trip?.socks}</label>              
+              <input type="checkbox" readOnly checked={false} />
+              <label>Socks: {trip?.socks}</label>
             </div>
             <div className="packingCheckbox">
               <input type="checkbox" readOnly checked={false} />
-              <label>Underwear: {trip?.underwear}</label>              
-            </div> 
-            <div className="packingCheckbox">
-              <input type="checkbox" readOnly checked={false} />
-              <label>Sweatshirt: {trip?.sweatshirt}</label>              
+              <label>Underwear: {trip?.underwear}</label>
             </div>
             <div className="packingCheckbox">
               <input type="checkbox" readOnly checked={false} />
-              <label>Jacket: {trip?.jacket}</label>              
+              <label>Sweatshirt: {trip?.sweatshirt}</label>
+            </div>
+            <div className="packingCheckbox">
+              <input type="checkbox" readOnly checked={false} />
+              <label>Jacket: {trip?.jacket}</label>
             </div>
           </div>
-          
+
           {trip?.complete ? (
             <button onClick={() => navigate("/previoustrips")}> Back </button>
           ) : (
             <div className="actionButtons">
-              <Link className="editButton" to={`/packing/${trip?._id}`}>Edit Packing</Link>
+              <Link className="editButton" to={`/packing/${trip?._id}`}>
+                Edit Packing
+              </Link>
               <button id="back" onClick={() => navigate("/")}>
                 Back
               </button>
@@ -109,7 +110,6 @@ export function ViewPacking() {
             </div>
           )}
         </div>
-      
       </div>
     </div>
   );
