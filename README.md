@@ -40,7 +40,8 @@ Packing Planner is a web application designed to help users plan what to pack an
 ## Getting Started
 
 To view the deployed site, click [here](https://gc-packing-planner.web.app/).
-Otherwise, follow the instructions below to get the project up and running on your local machine.
+
+<!-- Otherwise, follow the instructions below to get the project up and running on your local machine.
 
 ### Prerequisites
 
@@ -76,7 +77,7 @@ npm install
 
 ```
 npm run dev
-```
+``` -->
 
 ## Project Structure
 
